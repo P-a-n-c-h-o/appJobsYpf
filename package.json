@@ -1,0 +1,63 @@
+{
+  "name": "appJobsYpf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index",
+    "desarrollo": "concurrently  \"npm run dev\" \"npm run watch\" ",
+    "start": "node ./index.js",
+    "watch": "webpack -w --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/P-a-n-c-h-o/appJobsYpf.git"
+  },
+  "author": "Paez Francisco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/P-a-n-c-h-o/appJobsYpf/issues"
+  },
+  "homepage": "https://github.com/P-a-n-c-h-o/appJobsYpf#readme",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "concurrently": "^7.3.0",
+    "connect": "^3.7.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "http-errors": "^2.0.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^6.5.3",
+    "multer": "^1.4.5-lts.1",
+    "muter": "^0.7.0",
+    "nanoid": "^4.0.0",
+    "node": "^19.0.0",
+    "node.js": "^0.0.1-security",
+    "nodemailer": "^6.8.0",
+    "nodemailer-express-handlebars": "^5.0.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "save": "^2.5.0",
+    "session": "^0.1.0",
+    "shortid": "^2.2.16",
+    "slug": "^5.3.0",
+    "sweetalert2": "^11.4.32"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "babel-loader": "^8.2.5",
+    "handlebars": "^4.7.7",
+    "nodemon": "^2.0.19",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
