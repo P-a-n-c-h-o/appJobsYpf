@@ -1,42 +1,42 @@
 const express = require('express');
 const router = express.Router();
 const homeController = require('../controllers/homeController');
-const vacantesController = require('../controllers/vacantesController');
+const tareasController = require('../controllers/tareasController');
 const usuariosController = require('../controllers/usuariosController');
 const authController = require('../controllers/authController');
 
 module.exports = () => {
-    router.get('/', homeController.mostrarTrabajos);
+    router.get('/', homeController.mostrarObjetivos);
 
-    // Crear Vacantes
-    router.get('/vacantes/nueva',
+    // Crear tareas
+    router.get('/tareas/nueva',
         authController.verificarUsuario,
-        vacantesController.formularioNuevaVacante
+        tareasController.formularioNuevaTarea
     );
-    router.post('/vacantes/nueva',
+    router.post('/tareas/nueva',
         authController.verificarUsuario,
-        vacantesController.validarVacante,
-        vacantesController.agregarVacante
-    );
-
-    //Mostrar Vacante (singular)
-    router.get('/vacantes/:url', vacantesController.mostrarVacante);
-
-    //Editar Vacante
-
-    router.get('/vacantes/editar/:url',
-        authController.verificarUsuario,
-        vacantesController.formEditarVacante
-    );
-    router.post('/vacantes/editar/:url',
-        authController.verificarUsuario,
-        vacantesController.validarVacante,   
-        vacantesController.editarVacante
+        tareasController.validarTarea,
+        tareasController.agregarTarea
     );
 
-    //eliminar Vacantes
-    router.delete('/vacantes/eliminar/:id',
-        vacantesController.eliminarVacante
+    //Mostrar tarea (singular)
+    router.get('/tareas/:url', tareasController.mostrarTarea);
+
+    //Editar tarea
+
+    router.get('/tareas/editar/:url',
+        authController.verificarUsuario,
+        tareasController.formEditarTarea
+    );
+    router.post('/tareas/editar/:url',
+        authController.verificarUsuario,
+        tareasController.validarTarea,   
+        tareasController.editarTarea
+    );
+
+    //eliminar tareas
+    router.delete('/tareas/eliminar/:id',
+    tareasController.eliminarTarea
     );
 
     //crear cuenta
@@ -83,19 +83,19 @@ module.exports = () => {
     )
    
     //Recibir Mensajes de candidatos
-    router.post('/vacantes/:url',
-    vacantesController.subirCV,
-    vacantesController.contactar
+    router.post('/tareas/:url',
+    tareasController.subirCV,
+    tareasController.contactar
     );
 
-    //muetra los candidatos por vacante
+    //muetra los candidatos por tarea
     router.get('/candidatos/:id', 
         authController.verificarUsuario,
-        vacantesController.mostrarCandidatos
+        tareasController.mostrarCandidatos
     )
-    //Buscador de Vacantes
+    //Buscador de tareas
 
-    router.post('/buscador', vacantesController.buscarVacantes);
+    router.post('/buscador', tareasController.buscarTareas);
 
     return router;
 

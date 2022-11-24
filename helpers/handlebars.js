@@ -3,10 +3,7 @@ module.exports = {
         
         console.log(seleccionados);
 
-        const skills = ['HTML', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery','NodeJS',
-        'ReactJS', 'React Hooks', 'Redux', 'Apollo','GraphQL', 'TypeScript', 'PHP', 'Laravel',
-        'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 'Mongoose', 'SQL', 'MVC', 'SASS',
-        'WordPress', 'MongoDB', 'Express'];
+        const skills = ['RT', 'UT', 'RX', 'PT', 'MT', 'OG', 'AE', 'VT', 'ET', 'REPLICA', 'DUREZA', 'RELEVAMIENTO'];
 
         let html = '';
         skills.forEach(skill => {

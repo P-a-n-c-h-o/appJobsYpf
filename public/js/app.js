@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         skillsSeleccionados();
     }
 
-    const vacantesListado = document.querySelector('.panel-administracion');
-    //const vacantesListado =  document.querySelectorAll('.alertas');
+    const tareasListado = document.querySelector('.panel-administracion');
+    //const tareasListado =  document.querySelectorAll('.alertas');
 
-    if(vacantesListado){
-        vacantesListado.addEventListener('click', accionesListado);
+    if(tareasListado){
+        tareasListado.addEventListener('click', accionesListado);
     }
 
 })
@@ -70,7 +70,7 @@ const limpiarAlertas = () => {
     }, 2000);
 }
 
-//Eliminar Vacantes
+//Eliminar tareas
 const accionesListado = e => {
     e.preventDefault();
 
@@ -89,7 +89,7 @@ const accionesListado = e => {
           }).then((result) => {
             if (result.isConfirmed) {
                 //enviar la peticion con axios
-                const url = `${location.origin}/vacantes/eliminar/${e.target.dataset.eliminar}`;
+                const url = `${location.origin}/tareas/eliminar/${e.target.dataset.eliminar}`;
 
                 //axios para eliminar registro
                 axios.delete(url, {params: {url} })

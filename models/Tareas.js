@@ -16,7 +16,8 @@ const tareasSchema =  new mongoose.Schema({
     prioridad: {
         type: String,
         trim: true,
-        required: 'La prioridad es obligatoria'
+        required: 'La prioridad es obligatoria',
+        default: 0,
     },
     inicio: {
         type: String,
