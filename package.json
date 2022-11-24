@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/P-a-n-c-h-o/appJobsYpf.git"
+    "url": "https://github.com/P-a-n-c-h-o/appJobsYpf.git "
   },
   "author": "Paez Francisco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/P-a-n-c-h-o/appJobsYpf/issues"
+    "url": "https://github.com/P-a-n-c-h-o/appJobsYpf.git/issues"
   },
-  "homepage": "https://github.com/P-a-n-c-h-o/appJobsYpf#readme",
+  "homepage": "https://github.com/P-a-n-c-h-o/appJobsYpf.git#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
     "axios": "^0.27.2",
