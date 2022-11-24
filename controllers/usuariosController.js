@@ -25,10 +25,10 @@ exports.subirImagen = (req, res, next) => {
 }
 // Opciones de Multer
 const configuracionMulter = {
-    limits : { fileSize : 100000 },
+    limits : { fileSize : 6000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
-            cb(null, __dirname+'../public/uploads/perfiles');
+            cb(null, __dirname+'../../public/uploads/perfiles');
         }, 
         filename : (req, file, cb) => {
             const extension = file.mimetype.split('/')[1];
@@ -51,7 +51,7 @@ const upload = multer(configuracionMulter).single('imagen');
 exports.formCrearCuenta = (req, res) => {
     res.render('crear-cuenta', {
         nombrePagina: 'Crea tu cuenta en appJobsYpf',
-        tagline: 'Comienza a publicar tus vacantes gratis, solo debes crear una cuenta'
+        tagline: 'Comienza a publicar tus tareas gratis, solo debes crear una cuenta'
     })
 }
 
@@ -75,8 +75,8 @@ exports.validarRegistro = async (req, res, next) => {
     if (!errores.isEmpty()) {
         req.flash('error', errores.array().map(error => error.msg));
         res.render('crear-cuenta', {
-            nombrePagina: 'Crea una cuenta en appJobsYpf',
-            tagline: 'Comienza a publicar tus vacantes gratis, solo debes crear una cuenta',
+            nombrePagina: 'Crea una cuenta en appjobsYpf',
+            tagline: 'Comienza a publicar tus tareas gratis, solo debes crear una cuenta',
             mensajes: req.flash(),
         })
         return;
@@ -103,7 +103,7 @@ exports.crearUsuario = async (req, res, next) => {
 // formulario para iniciar sesion
 exports.formIniciarSesion =(req, res) =>{
     res.render('iniciar-sesion', {
-        nombrePagina: 'Iinicair Sesión en appJobsYpf'
+        nombrePagina: 'Iinicair Sesión en appJobs'
     })
 }
 

@@ -1,27 +1,27 @@
-<main class="lista-vacantes"> 
-    <h2>Lista de Vacantes</h2>
+<main class="lista-tareas"> 
+    <h2>Lista de Tareas</h2>
 
-    {{#if vacantes.length}}<!--revisamos si existe algo aqui--> 
-        {{#each vacantes}}
-            <div class="vacante">
+    {{#if tareas.length}}<!--revisamos si existe algo aqui--> 
+        {{#each tareas}}
+            <div class="tarea">
                 <div class="caja">
-                    <h3>{{empresa}}</h3><!--Con esto enviamos estos valores de la DB-->
-                    <p class="puesto">{{titulo}}</p>
+                    <h3>Empresa Ejecutora</h3><!--Con esto enviamos estos valores de la DB-->
+                    <p class="puesto">{{empresa}}</p>
                 </div>
                 <div class="caja">
-                    <p class="etiqueta">Ubicación</p>
-                    <p class="nombre">{{ubicacion}}</p>
+                    <p class="etiqueta">Prioridad</p>
+                    <p class="nombre">{{prioridad}}</p>
                 </div>
                 <div class="caja">
-                    <p class="etiqueta">Contrato</p>
-                    <p class="nombre contrato">{{contrato}}</p>
+                    <p class="etiqueta">Finalización</p>
+                    <p class="nombre contrato">{{fin}}</p>
                 </div>
                 <div class="caja centrar-vertical">
-                    <a href="/vacantes/{{url}}" class="btn btn-verde">Más Info</a>
+                    <a href="/tareas/{{url}}" class="btn btn-verde">Más Info</a>
                 </div>
-            </div> <!--.vacante-->
+            </div> <!--.tarea-->
         {{/each}}
     {{else}}
-        <p>No hay Vacantes</p><!--de esta forma podemos revisar si existe algo o no-->
+        <p>No hay Tareas</p><!--de esta forma podemos revisar si existe algo o no-->
     {{/if}}
 </main>

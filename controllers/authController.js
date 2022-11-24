@@ -1,6 +1,6 @@
 const passport = require("passport");
 const mongoose = require('mongoose');
-const Vacante = mongoose.model('Vacante');
+const Tarea = mongoose.model('Tarea');
 const Usuarios = mongoose.model('Usuarios');
 const crypto = require('crypto');
 const enviarEmail = require('../handlers/email');
@@ -29,16 +29,16 @@ exports.verificarUsuario = (req, res, next) => {
 exports.mostrarPanel = async (req, res) => {
 
     //consultar el usaurio atenticado
-    const vacantes = await Vacante.find({autor: req.user._id}).lean();
+    const tareas = await Tarea.find({autor: req.user._id}).lean();
 
 
     res.render('administracion', {
         nombrePagina: 'Panel de Administración',
-        tagline: 'Crea y Administra tus vacantes desde aquí',
+        tagline: 'Crea y Administra tus tareas desde aquí',
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        vacantes
+        tareas
     })
 }
 

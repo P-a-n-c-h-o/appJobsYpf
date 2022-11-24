@@ -1,0 +1,77 @@
+<div class="contenido-superior tarea contenedor">
+    <div class="caja">
+        <p class="etiqueta">Empresa</p>
+        <p class="nombre">{{tarea.empresa}}</p>
+    </div>
+
+    <div class="caja">
+        <p class="etiqueta">Prioridad</p>
+        <p class="nombre">{{tarea.prioridad}}</p>
+    </div>
+    <div class="caja">
+        <p class="etiqueta">Fecha de Inicio</p>
+        <p class="nombre">{{tarea.inicio}}</p>
+    </div>
+
+    <div class="caja">
+        <p class="etiqueta">Finalización</p>
+        <p class="nombre">{{tarea.fin}}</p>
+    </div>
+</div>
+
+<div class="tarea-contenedor contenedor">
+    <main class="contenido">
+        <h2>Descripción de la Tarea</h2>
+        <div class="tarea-descripcion">
+            {{{tarea.descripcion}}}
+        </div>
+
+        <!--<a href="/tareas/editar/{{tarea.url}}" class="btn btn-azul editar-btn">Editar tarea</a>-->
+    </main>
+    <aside class="sidebar">
+        <h2>Técnica a Realizar</h2>
+        <ul class="skills">
+            {{#each tarea.skills}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </aside>
+</div>
+
+<div class="contenedor datos-reclutador">
+    <div class="enviar-datos">
+
+        <h2>Contactar Inspector</h2>
+        <p>Llena el siguiente formulaio, sube tu informe y pronto te contactará</p>
+
+        <form method="POST" action="/tareas/{{tarea.url}}" class="default-form" enctype="multipart/form-data">
+            <div class="campo">
+                <label>Nombre</label>
+                <input type="text" name="nombre" placeholder="Tu Nombre">
+            </div>
+            <div class="campo">
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="Tu Email">
+            </div>
+            <div class="campo">
+                <label>informe (PDF)</label>
+                <input type="file" name="cv">
+            </div>
+            <div class="campo">
+                 <input type="submit" class="btn btn-verde" value="Enviar">
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="info-reclutador">
+        <h2>Información Inspector</h2>
+        {{#if tarea.autor.nombre}}
+            <p>{{tarea.autor.nombre}}</p>
+        {{/if}}
+        {{#if tarea.autor.imagen}}
+            <img src="/uploads/perfiles/{{tarea.autor.imagen}}">
+        {{/if}}
+    </div>
+</div>

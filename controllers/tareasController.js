@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
-const Vacante = mongoose.model('Vacante');
+const Tarea = mongoose.model('Tarea');
 const { body, validationResult } = require("express-validator");
-//const Vacante =('../models/Vacantes.js')
+//const Tarea =('../models/Tareas.js')
 const multer = require('multer');
 const shortid = require('shortid');
 
 
-exports.formularioNuevaVacante = (req, res) => {
-    res.render('nueva-vacante', {
-        nombrePagina: 'Nueva Vacante',
-        tagline: 'Llena el formulario para publicar una nueva vacante',
+exports.formularioNuevaTarea = (req, res) => {
+    res.render('nueva-tarea', {
+        nombrePagina: 'Nueva Tarea',
+        tagline: 'Llena el formulario para publicar una nueva tarea',
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen
@@ -18,46 +18,46 @@ exports.formularioNuevaVacante = (req, res) => {
 }
 
 // agregar vacanates a a base de datos
-exports.agregarVacante = async (req, res) => {
-   const vacante = new Vacante(req.body);
+exports.agregarTarea = async (req, res) => {
+   const tarea = new Tarea(req.body);
 
-   //usuario autor de la vacante
-   vacante.autor = req.user._id;
+   //usuario autor de la tarea
+   tarea.autor = req.user._id;
 
     //crear arreglo de habilidades (skills)
-   vacante.skills= req.body.skills.split(',');
+    tarea.skills= req.body.skills.split(',');
 
-   //console.log(vacante)
+   //console.log(tarea)
 
     // almacenar en la base de datos
-   const nuevaVacante = await vacante.save();
+   const nuevaTarea = await tarea.save();
 
     //redireccionar
-   res.redirect(`/vacantes/${nuevaVacante.url}`);
+   res.redirect(`/tareas/${nuevaTarea.url}`);
 }
 
-// mustra una vacante
-exports.mostrarVacante = async (req, res, next) => {
-    const vacante = await Vacante.findOne({url: req.params.url}).populate('autor').lean();
+// mustra una tarea
+exports.mostrarTarea = async (req, res, next) => {
+    const tarea = await Tarea.findOne({url: req.params.url}).populate('autor').lean();
 
     //si no hay resuktados
-    if(!vacante) return next();
+    if(!tarea) return next();
 
-    res.render('vacante', {
-        vacante,
-        nombrePagina:  vacante.titulo,
+    res.render('tarea', {
+        tarea,
+        nombrePagina:  tarea.planta,
         barra:true
     })
 }
 
-exports.formEditarVacante = async (req, res, next) => {
-    const vacante = await Vacante.findOne({url: req.params.url}).lean();
+exports.formEditarTarea = async (req, res, next) => {
+    const tarea = await Tarea.findOne({url: req.params.url}).lean();
 
-    if(!vacante) return next();
+    if(!tarea) return next();
 
-    res.render('editar-vacante',{
-        vacante,
-        nombrePagina: `Editar - ${vacante.titulo}`,
+    res.render('editar-tarea',{
+        tarea,
+        nombrePagina: `Editar - ${tarea.planta}`,
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen
@@ -65,28 +65,29 @@ exports.formEditarVacante = async (req, res, next) => {
     })
 }
 
-exports.editarVacante = async (req, res) => {
-    const vacanteActualizada = req.body;
+exports.editarTarea = async (req, res) => {
+    const tareaActualizada = req.body;
 
-    vacanteActualizada.skills = req.body.skills.split(',');
+    tareaActualizada.skills = req.body.skills.split(',');
 
-    const vacante = await Vacante.findOneAndUpdate({url: req.params.url}, vacanteActualizada, {
+    const tarea = await Tarea.findOneAndUpdate({url: req.params.url}, tareaActualizada, {
         new:true,
         runValidators: true,
     }) ;
 
-    res.redirect(`/vacantes/${vacante.url}`);
+    res.redirect(`/tareas/${tarea.url}`);
 
 }
 
-//validar y sanitizar los campos de las nuevas vacantes
-exports.validarVacante = async (req, res, next) => {
+//validar y sanitizar los campos de las nuevas tareas
+exports.validarTarea = async (req, res, next) => {
     //sanitizar los campos
     const rules = [
-        body('titulo').not().isEmpty().withMessage('Agrega un Título a la Vacnte').escape(),
-        body('empresa').not().isEmpty().withMessage('agrega una empresa').escape(),
-        body('ubicacion').not().isEmpty().withMessage('Agrega una Ubicaión').escape(),
-        body('contrato').not().isEmpty().withMessage('Selecciona el tipo de contrato').escape(),
+        body('planta').not().isEmpty().withMessage('Agrega una Palnata a la Tarea').escape(),
+        body('empresa').not().isEmpty().withMessage('Agrega una empresa').escape(),
+        body('prioridad').not().isEmpty().withMessage('Selecciona una Prioridad').escape(),
+        body('inicio').not().isEmpty().withMessage('Agregar la fecha de Inicio').escape(),
+        body('fin').not().isEmpty().withMessage('Agregar la fecha de Finalizacion').escape(),
         body('skills').not().isEmpty().withMessage('Agrega al menos una Habilidad').escape(),
     ];
  
@@ -97,9 +98,9 @@ exports.validarVacante = async (req, res, next) => {
     //si hay errores
     if (!errores.isEmpty()) {
         req.flash('error', errores.array().map(error => error.msg));
-        res.render('nueva-vacante', {
-            nombrePagina: 'Nueva Vacante',
-            tagline: 'Llena el formulario para publicar una nueva vacante',
+        res.render('nueva-tarea', {
+            nombrePagina: 'Nueva Tarea',
+            tagline: 'Llena el formulario para publicar una nueva tarea',
             cerrarSesion: true,
             nombre: req.user.nombre,
             mensajes: req.flash()
@@ -112,27 +113,27 @@ exports.validarVacante = async (req, res, next) => {
 }
 
 
-exports.eliminarVacante = async (req, res) => {
+exports.eliminarTarea = async (req, res) => {
     const { id } = req.params;
 
-    const vacante = await Vacante.findById(id);
+    const tarea = await Tarea.findById(id);
 
-    if(verificarAutor(vacante, req.user)){
+    if(verificarAutor(tarea, req.user)){
         //Todo bien si es el usario, eliminar
-        vacante.remove();
-        res.status(200).send('Vacante Eliminada Correctamente');
+        tarea.remove();
+        res.status(200).send('Tarea Eliminada Correctamente');
     } else{
         // No eliminar 
         res.status(403).send('Error')
     }
 
-    console.log(vacante);
+    console.log(tarea);
 
     
 }
 
-const verificarAutor = (vacante = {}, usuario = {}) => {
-    if(!vacante.autor.equals(usuario._id)){
+const verificarAutor = (tarea = {}, usuario = {}) => {
+    if(!tarea.autor.equals(usuario._id)){
         return false
     }
     return true;
@@ -165,7 +166,7 @@ const configuracionMulter = {
     limits : {fileSize: 200000},
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
-            cb(null, __dirname+'../public/uploads/cv')
+            cb(null, __dirname+'../../public/uploads/cv')
         },
         filename: (req, file,cb) => {
             const extension = file.mimetype.split('/')[1]
@@ -187,10 +188,10 @@ const upload = multer(configuracionMulter).single('cv');
 
 exports.contactar = async (req, res, next) => {
 
-    const vacante = await Vacante.findOne({url: req.params.url});
+    const tarea = await Varea.findOne({url: req.params.url});
 
-    //sino existe la vacante 
-    if(!vacante) return next();
+    //sino existe la tarea 
+    if(!tarea) return next();
 
     //todo bien, construir el nuevo objeto
     const nuevoCandidato = {
@@ -198,46 +199,46 @@ exports.contactar = async (req, res, next) => {
         email: req.body.email,
         cv: req.file.filename
     }
-    //almacenar la vacante
-    vacante.candidatos.push(nuevoCandidato);
-    await vacante.save();
+    //almacenar la tarea
+    tarea.candidatos.push(nuevoCandidato);
+    await tarea.save();
 
     //mensaje flash y redireccion
-    req.flash('correcto', 'Se envió tu Curruculum Correctamente');
+    req.flash('correcto', 'Se envió tu informe Correctamente');
     res.redirect('/')
 }
 
 exports.mostrarCandidatos = async (req, res, next) => {
-    const vacante = await Vacante.findById(req.params.id).lean();
+    const tarea = await Tarea.findById(req.params.id).lean();
 
     //validacion de autor
-    if(vacante.autor != req.user._id.toString()){
+    if(tarea.autor != req.user._id.toString()){
         return next();
     } 
 
-    if(!vacante) return next();
+    if(!tarea) return next();
 
     res.render('candidatos', {
-        nombrePagina: `Candidatos Vacante - ${vacante.titulo}`,
+        nombrePagina: `Candidatos Tarea - ${tarea.planta}`,
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        candidatos: vacante.candidatos
+        candidatos: tarea.candidatos
     })
 }
 
-// Buscador de Vacantes
-exports.buscarVacantes = async (req,res) =>{
-    const vacantes = await Vacante.find({
+// Buscador de tareas
+exports.buscarTareas = async (req,res) =>{
+    const tareas = await Tarea.find({
         $text : {
             $search : req.body.q
         }
     }).lean();
 
-   // modstrar las vacantes
+   // modstrar las tareas
    res.render('home', {
     nombrePagina: `Resultados para la búsqueda: ${req.body.q}`,
     barra:true,
-    vacantes
+    tareas
    })
 }

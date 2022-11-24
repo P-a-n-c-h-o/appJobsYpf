@@ -1,0 +1,58 @@
+<main class="contenedor">
+    <form action="/tareas/editar/{{tarea.url}}" method="POST" class="default-form">
+        <h3>Información General</h3>
+
+        <div class="campo">
+            <label>Planta</label>
+            <input type="text" name="planta" placeholder="Ej: Calderas II"  value="{{tarea.planta}}" required>
+        </div>
+        <div class="campo">
+            <label>Empresa</label>
+            <input type="text" name="empresa" placeholder="Empresa Ejecutora" value="{{tarea.empresa}}" required>
+        </div>
+    <!--modificando ubucacion por prioridad-->
+        <div class="campo">
+            <label>Pioridad</label>
+            <select name="contrato">
+                {{#tipoContrato tarea.prioridad}}
+                    <option value="" disabled selected>-- Selecciona --</option>
+                    <option value="cero"> 0 </option>
+                    <option value="uno"> 1 </option>
+                    <option value="dos"> 2 </option>
+                    <option value="tres"> 3 </option>
+                {{/tipoContrato}}
+            </select>
+        </div>
+        <div class="campo">
+            <label>Fecha Inicio</label>
+            <input type="date" name="inicio" placeholder="dd/mm/aa">
+        </div>
+
+        <div class="campo">
+            <label>Finalización</label>
+            <input type="date" name="fin" placeholder="dd/mm/aa">
+        </div>
+
+</div>
+        <h3>Descripción del Puesto</h3>
+        <div class="campo descripcion">
+            <label>Descripción</label>
+            <input type="hidden" id="x" value="{{{tarea.descripcion}}}" name="descripcion">
+            <trix-editor input="x"></trix-editor>
+        </div>
+
+        <h3>Conocimientos</h3>
+
+        <ul class="lista-conocimientos">
+            {{#seleccionarSkills tarea.skills}}
+            {{/seleccionarSkills}}
+        </ul>
+
+        <div class="campo centrar-horizontal">
+            <input type="hidden"  name="skills" id="skills">
+            <input type="submit" value="Gurdar Cambios" class="btn btn-azul">
+        </div>
+
+
+    </form>
+</main>

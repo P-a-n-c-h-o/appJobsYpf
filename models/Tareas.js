@@ -3,27 +3,27 @@ mongoose.Promise = global.Promise;
 const slug = require('slug');
 const shortid = require('shortid');
 
-const vacantesSchema =  new mongoose.Schema({
-    titulo: {
+const tareasSchema =  new mongoose.Schema({
+    planta: {
         type: String, 
-        required: 'El nombre de la vacante es obligatorio',
+        required: 'El nombre de la tarea es obligatorio',
         trim : true
     }, 
     empresa: {
         type: String,
         trim: true
     },
-    ubicacion: {
+    prioridad: {
         type: String,
         trim: true,
-        required: 'La ubicacion es obligatoria'
+        required: 'La prioridad es obligatoria'
     },
-    salario: {
+    inicio: {
         type: String,
         default: 0,
         trim: true,
     },
-    contrato: {
+    fin: {
         type: String,
         trim: true,
     },
@@ -47,16 +47,16 @@ const vacantesSchema =  new mongoose.Schema({
        required: 'El autor es obligatorio'
     }
 });
-vacantesSchema.pre('save' , function(next) {
+tareasSchema.pre('save' , function(next) {
 
     // crear la url
-    const url = slug(this.titulo);
+    const url = slug(this.planta);
     this.url = `${url}-${shortid.generate()}`;
 
     next();
 })
 
 //crear indice
-vacantesSchema.index({ titulo : 'text'});
+tareasSchema.index({ planta : 'text'});
 
-module.exports = mongoose.model('Vacante', vacantesSchema);
+module.exports = mongoose.model('Tarea', tareasSchema);

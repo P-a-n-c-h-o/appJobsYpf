@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "63166dd26346a307f1abd8fc",
+    "email": "pancho@pancho.com",
+    "nombre": "pancho",
+    "password": "$2b$12$7JOHvwbIQ2oUsmW75DbetutITnhj3TUIvwT18G8cDnpZwUf5A6Y9m",
+    "__v": 0,
+    "imagen": "_queMxbN3.jpeg",
+    "expira": "2022-10-22T03:13:51.722Z",
+    "token": "26e22b7550c117e044cebbcd5211e9bd3fe0ffa6"
+  },
+  {
+    "_id": "631671e3f6357e62e261768a",
+    "email": "juanfranciscopaez785@gmail.commmmm",
+    "nombre": "JUANCHO",
+    "password": "$2b$12$RyFOUYQDEuHHX2fPxCkQNOYrMJDMmnBIltj.rp7yiQYvhI2VbAX5S",
+    "__v": 0,
+    "imagen": "5aCWYcAyL.jpeg"
+  },
+  {
+    "_id": "631bf78294d9d7e81fdb5b20",
+    "email": "bruno@bruno.com",
+    "nombre": "BRUNO",
+    "password": "$2b$12$DRYVooQxuZvgF9fhkLAeReN32Y/xsTWQYvCuObf9fcvWyESDXypsu",
+    "__v": 0,
+    "expira": "2022-10-21T14:05:00.472Z",
+    "token": "80d40c54bef143378aa59fde49b6350c51e0dfaa"
+  },
+  {
+    "_id": "632a289e25c6bf8f0fcb44d9",
+    "email": "panchuco@gmail.com",
+    "nombre": "panchuco",
+    "password": "$2b$12$bOLjYWTmZOfRgzl0kDlaiu1tw32a50CvDqXt.kPV8Ppj4XQdMejY6",
+    "__v": 0,
+    "expira": "2022-10-22T03:36:59.841Z",
+    "token": "7aa0e3f34eabd6b3ae6c6ac1dc40ed447a06ea74"
+  },
+  {
+    "_id": "6353580261b05f60acd5b2cf",
+    "email": "brunos@brunos.com",
+    "nombre": "BUBU",
+    "password": "$2b$12$UrdC9uOGzpyj5ayZ8ga6qO/fppD76gRbHyOQAGwzc585XeEI01kry",
+    "__v": 0
+  },
+  {
+    "_id": "6353584f61b05f60acd5b2d6",
+    "email": "juanfranciscopaez785@gmail.com",
+    "nombre": "pancho",
+    "password": "$2b$12$A1YVU8KeN2trOG8KT0hen.ALI704zehTEnFtAOafjbbbvAAq/gMaW",
+    "__v": 0,
+    "expira": "2022-10-22T03:55:58.479Z",
+    "token": "cb5eb6c1865a4ca8cce1c772677650a6cd52bf87"
+  }
+]
