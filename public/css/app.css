@@ -25,19 +25,23 @@ h1 {
 h2 {
     font-weight: 700;
     font-size: 4rem;
+    text-align: center;
 }
 h3 {
     font-size: 2.8rem;
 }
+
 .contenedor {
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .separador {
     padding-bottom: 2rem;
     padding-top:2rem;
     border-bottom: 1px solid #272727;
 }
+
 /** Botones **/
 .btn {
     font-size: 1.8rem;
@@ -47,11 +51,12 @@ h3 {
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background-color .3s ease-out;
+    transition: background-color .2s ease-out;
     display: block;
     border:none;
 }
 .btn-verde {
+    
     background-color: #00C897;
 }
 .btn-verde:hover {
@@ -66,6 +71,7 @@ h3 {
 }
 
 .btn-amarillo {
+    margin-bottom: 15px;
     background-color: #F6B15F;
 }
 .btn-rojo {
@@ -79,6 +85,8 @@ h3 {
     flex: 0 0 auto;
     text-align: center;
 }
+
+
 
 /** Header **/
 .tagline {
@@ -94,20 +102,30 @@ h3 {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-bottom: 5rem;
+    margin-bottom: 0rem;
 }
-@media (max-width:800px){
+@media (min-width:768px){
+    .site-header{
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+    }
+    h2{
+        text-align: center;
+    }
+
+}
+@media (max-width:1000px){
     .site-header{
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
     }
     h2 {
-        text-align: center;
-        
+        text-align: center;        
     }
     p {
-        text-align: center;
-        
+        text-align: center;        
     }
 
 }
@@ -124,27 +142,29 @@ h3 {
 .buscador {
     padding-top: 1rem;
     display: flex;
-    justify-content: flex-end;
-    flex: 1;
+    justify-content: center;
+    place-self: center ;
+    
 }
 .buscador form {
-    flex:1;
+    flex:10px;
     position: relative;
 }
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
     .buscador form {
         flex: 0 0 40%;
+
     }
 }
 .buscador input[type="text"] {
     background-color: rgba(255,255,255,.1);
     width: 100%;
     border: none;
-    padding: .5rem 4rem .5rem 2rem;
+    padding: .5rem 30rem .5rem 2rem;
     height: 5rem;
     border-radius: 1rem;
     color: white;
-    font-size: 1.2rem;
+    font-size: 3rem;
 }
 .buscador input[type="submit"] {
     display: block;
@@ -167,12 +187,12 @@ h3 {
 
 
 
-.candidato,
+.informe,
 .tarea {
     padding: 3rem 0;
     border-bottom: 1px solid #272727;
 }
-.candidato,
+.informe,
 .tarea:last-of-type{
     border:none;
 }
@@ -182,7 +202,7 @@ h3 {
 .caja p {
     color: #ffffff;
 }
-.contrato {
+.prioridad {
     text-transform: capitalize;
 }
 .caja .puesto,
@@ -204,8 +224,8 @@ h3 {
 .caja .btn {
     text-align: center;
 }
-@media (min-width:800px) {
-    .candidato,
+@media (min-width:1000px) {
+    .informe,
     .tarea {
         display: flex;
         
@@ -220,32 +240,28 @@ h3 {
     }
     
 }
-@media (max-width:800px) {
-    .tarea{
-        justify-content: center;
-        align-items: center;
-    }
-    .caja{
-        justify-content: center;
-        align-items: center; 
-    }
+@media (max-width:1000px) {
+
+
     h3{
         text-align: center;
     }
-    p.puesto,
-    p.candidatos,
+
     .caja .puesto{
         text-align: center; 
     }
 
+
     .panel-administracion{
+        flex-direction: column;
         display: flex;
-        justify-content: center;
-        
+        align-items: center;
     }
+    .tarea .informes{
+        padding-left: 55px;
+    }
+
     
-
-
     .btn-rojo{
         margin-top: 20px;
     }
@@ -266,21 +282,38 @@ h3 {
     font-size: 2.4rem;
 }
 .contenido-superior {
-    margin-bottom: 6rem;
+    margin-bottom: 4em;
 }
-@media (min-width:800px){
+
+
+@media (max-width:1000px){
+    .contenido-superior {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .contenido-superior .nombre{
+        text-align: center;
+    }
+
+
+
+}
+@media (min-width:1000px){
     .tarea-contenedor {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
     }
     .tarea-contenedor main{
-        flex: 0 0 60%;
+        flex: 0 0 50%;
     }
     .tarea-contenedor aside {
+        flex-wrap: wrap;
         flex: 0 0 calc(40% - 2rem);
     }
 }
+
 .tarea-descripcion h1 {
     line-height: 1.4;
 }
@@ -291,7 +324,11 @@ h3 {
 .skills {
     color: white;
 }
+.skills1 {
+    color: white;
+}
 .skills li,
+.skills1 li,
 .tarea-descripcion div  {
     font-size: 1.8rem;
     line-height: 2.4;
@@ -310,6 +347,7 @@ h3 {
 
 }
 
+
 /** Iniciar Sesión **/
 .default-form {
     max-width: 800px;
@@ -324,16 +362,18 @@ h3 {
 }
 .default-form .campo {
     margin-bottom: 3rem;
-    display: flex;   
+    display: flex;  
+     
 }
 .default-form label {
     padding-top: 1rem;
     flex: 0 0 18rem;
     font-size: 1.8rem;
-    color: white;
+    color:white;
     font-weight: 700;
     text-transform: uppercase;
 }
+
 .default-form input[type="email"],
 .default-form input[type="password"],
 .default-form input[type="text"],
@@ -349,6 +389,7 @@ h3 {
     border-radius: 1rem;
     border: none;
 } 
+
 
 .default-form input[type="file"] {
     color: white;
@@ -405,7 +446,28 @@ trix-toolbar .trix-button--icon-strike {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+.lista-conocimientos1 {
+    list-style: none;
+    padding: 0;    
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .lista-conocimientos  li {
+    border: 2px solid #00C897;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    flex: 0 0 calc( 50% - 1rem);
+    text-align: center;
+    border-radius: 1rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lista-conocimientos1  li {
     border: 2px solid #00C897;
     margin-bottom: 2rem;
     text-transform: uppercase;
@@ -422,12 +484,23 @@ trix-toolbar .trix-button--icon-strike {
 .lista-conocimientos  li.activo {
     background-color: #00C897;
 }
+.lista-conocimientos1  li.activo {
+    background-color: #00C897;
+}
 .lista-conocimientos  li:hover {
+    cursor: pointer;
+}
+.lista-conocimientos1  li:hover {
     cursor: pointer;
 }
 
 @media (min-width:700px) {
     .lista-conocimientos li {
+        flex: 0 0 calc( 33% - 1rem);
+    }
+}
+@media (min-width:700px) {
+    .lista-conocimientos1 li {
         flex: 0 0 calc( 33% - 1rem);
     }
 }
@@ -437,14 +510,24 @@ trix-toolbar .trix-button--icon-strike {
     }
 }
 @media (min-width:800px) {
+    .lista-conocimientos1 li {
+        flex: 0 0 calc( 25% - 1rem);
+    }
+}
+@media (min-width:800px) {
     .lista-conocimientos li {
+        flex: 0 0 calc( 20% - 1rem);
+    }
+}
+@media (min-width:800px) {
+    .lista-conocimientos1 li {
         flex: 0 0 calc( 20% - 1rem);
     }
 }
 
 /** Admin **/
 
-p.candidatos {
+p.informes {
     font-weight: 400;
     color: white;
     display: block;
@@ -462,7 +545,7 @@ p.candidatos {
 }
 .cerrar-sesion p, 
 .cerrar-sesion a {
-    margin:  0 2rem 0 0 ;
+    margin:  0 4rem 0 0 ;
     color: #888;
     align-items: center;
 }
@@ -476,40 +559,51 @@ p.candidatos {
     width: 60px;
     align-items: center;
 }
-@media (max-width:800px){
+@media (max-width:1000px){
     .nombre-sitio{
     flex-direction: column;
+    text-align: center;
+    padding-left: 25px;
     }
     .cerrar-sesion {
-        padding: 10px 0px;
+        justify-content: center;
+        padding: 10px 10px;
+        padding-left: 60px;
+
     }
+
 
 }
 
 .botones {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 2rem 0 5rem 0;
     margin-bottom: 5rem;
 }
 .botones a {
-    margin-right: 2rem;
+    margin-right: 5rem;
 }
-@media (max-width:800px){
-    .separador {
-        justify-content: center;
-        align-items: center; 
-    }
-    .btn-verde{
-      margin-top: 20px;
+@media (max-width:1000px){
+    .botones {
+        flex-direction: column;
+        align-items: center;
     }
 
+    .botones .btn-azul{
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .botones .btn-verde{
+        margin: auto;
+    }
+
 }
 
 
 
-.lista-candidatos p,
+.lista-informes p,
 .lista-tareas p {
     color: white;
     text-align: center;
@@ -563,6 +657,7 @@ p.candidatos {
 .info-reclutador h2 {
     color: #616065;
     font-size: 2.4rem;
+    text-align: center;
 }
 .info-reclutador img {
     max-width: 300px;
@@ -574,24 +669,125 @@ p.candidatos {
     display: flex;
     justify-content: space-between;
     margin-top: 4rem;
+ 
 }
 .datos-reclutador p {
     font-size: 2.4rem;
     color: white;
+    text-align: center;
 }
-@media (min-width:1000px){
-    .enviar-datos {
-        flex: 0 0 calc(70% - 1rem);
-    }
-    .info-reclutador {
-        flex: 0 0 calc(30% - 1rem );
-    }
-}
+
 .enviar-datos h2 {
     font-size: 4rem;
     color: white;
+    text-align: center;
 }
 .enviar-datos p {
     color: white;
     font-size: 1.8rem;
+    text-align: center;
+}
+.info-reclutador{
+    justify-content: space-between;
+ }
+@media (min-width:768px){
+    .enviar-datos {
+        flex: 0 0 calc(70% - 1rem);
+    }
+    .info-reclutador h2 {
+        color: #616065;
+        font-size: 2.4rem;
+    }
+    .info-reclutador img {
+        max-width: 300px;
+        width: 100%;
+    }
+
+
+}
+@media (max-width:1000px){
+    .datos-reclutador{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        
+    }
+    .info-reclutador{
+        flex-direction: column; 
+        text-align: center;
+    }
+    .info-reclutador img {
+        width: 200px;
+
+    } 
+    .btn{
+        text-align: center;
+    }
+    .btn-verde{
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+
+}
+
+
+
+/** interfaz cragar imagen formulario **/
+.cajaimg{
+font-family: "Hlvetica Neue", Arial, Helvetica, sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 30px;
+}
+.drop-area{
+    border: 5px dashed #ddd;
+    height: 130px;
+    width: 800px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+
+@media (min-width:1000px){
+    .cajaimg{
+        flex: 0 0 calc(70% - 1rem);
+    }
+
+}
+.drop-area h4{
+    margin: 0px;
+    font-size: 30px;
+    font-weight: 500;
+    color: #000000;
+}
+.drop-area span{
+    padding-top: 10px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #000000;
+}
+.drop-area.active{
+    background-color: #b8d4fe;
+    color: black;
+    border: 2px dashed #618ac9;
+}
+.drop-area input{
+    width: 150px;
+    background-color: rgba(11, 195, 72, 0.876);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: initial;
 }

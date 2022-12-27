@@ -1,6 +1,5 @@
-
 <main class="contenedor">
-    <form action="/tareas/nueva" method="POST" class="default-form">
+    <form action="/tareas/nueva" method="POST" class="default-form" enctype="multipart/form-data">
         <h3>Información General</h3>
 
         <div class="campo">
@@ -11,9 +10,9 @@
             <label>Empresa</label>
             <input type="text" name="empresa" placeholder="Empresa Ejecutora">
         </div>
-    <!--modificando ubucacion por prioridad-->
+       <!--modificando ubucacion por prioridad-->
         <div class="campo">
-            <label>Pioridad</label>
+            <label>Prioridad</label>
             <select name="prioridad">
                     <option value="" disabled selected>-- Selecciona --</option>
                     <option value="0"> 0 </option>
@@ -40,7 +39,12 @@
             <trix-editor input="x"></trix-editor>
         </div>
 
-        <h3>Técnica a Utilizar</h3>
+        <div class="campo" action="/tareas/{{tarea.url}}">
+            <label>Archivos</label>
+            <input type="file" name="imagen1">
+        </div>
+
+        <h3>Técnica y Recursos a Realizar</h3>
 
         <ul class="lista-conocimientos">
             {{#seleccionarSkills a}}

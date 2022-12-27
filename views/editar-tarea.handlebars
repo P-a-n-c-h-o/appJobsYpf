@@ -1,47 +1,51 @@
 <main class="contenedor">
-    <form action="/tareas/editar/{{tarea.url}}" method="POST" class="default-form">
+    <form action="/tareas/editar/{{tarea.url}}" method="POST" class="default-form" enctype="multipart/form-data">
         <h3>Información General</h3>
 
         <div class="campo">
             <label>Planta</label>
-            <input type="text" name="planta" placeholder="Ej: Calderas II"  value="{{tarea.planta}}" required>
+            <input type="text" name="planta" placeholder="Ej: CALDERAS II"  value="{{tarea.planta}}" required>
         </div>
         <div class="campo">
             <label>Empresa</label>
-            <input type="text" name="empresa" placeholder="Empresa Ejecutora" value="{{tarea.empresa}}" required>
-        </div>
-    <!--modificando ubucacion por prioridad-->
-        <div class="campo">
-            <label>Pioridad</label>
-            <select name="contrato">
-                {{#tipoContrato tarea.prioridad}}
-                    <option value="" disabled selected>-- Selecciona --</option>
-                    <option value="cero"> 0 </option>
-                    <option value="uno"> 1 </option>
-                    <option value="dos"> 2 </option>
-                    <option value="tres"> 3 </option>
-                {{/tipoContrato}}
-            </select>
+            <input type="text" name="empresa" placeholder="Empresa Ejevutora" value="{{tarea.empresa}}" required>
         </div>
         <div class="campo">
             <label>Fecha Inicio</label>
-            <input type="date" name="inicio" placeholder="dd/mm/aa">
+            <input type="date" name="inicio" placeholder="dd/mm/aa" value="{{tarea.inicio}}" required>
         </div>
 
         <div class="campo">
             <label>Finalización</label>
-            <input type="date" name="fin" placeholder="dd/mm/aa">
+            <input type="date" name="fin" placeholder="dd/mm/aa" value="{{tarea.fin}}" required>
         </div>
 
-
-        <h3>Descripción del Puesto</h3>
+        <div class="campo">
+            <label>Prioridad</label>
+            <select name="prioridad">
+                {{#tipoPrioridad tarea.prioridad}}
+                    <option value="" disabled selected>-- Selecciona --</option>
+                    <option value="0"> 0 </option>
+                    <option value="1"> 1 </option>
+                    <option value="2"> 2 </option>
+                    <option value="3"> 3 </option>
+                {{/tipoPrioridad}}
+            </select>
+        </div>
+        <h3>Descripción de la Tarea</h3>
         <div class="campo descripcion">
             <label>Descripción</label>
-            <input type="hidden" id="x" value="{{{tarea.descripcion}}}" name="descripcion">
+            <input type="hidden" id="x" value="{{tarea.descripcion}}" name="descripcion">
             <trix-editor input="x"></trix-editor>
         </div>
+    
+        <div class="campo">
+            <label>Archivos</label>
+            <input type="file" name="imagen1">
+        </div>
 
-        <h3>Conocimientos</h3>
+
+        <h3>Técnica y Recursos a Realizar</h3>
 
         <ul class="lista-conocimientos">
             {{#seleccionarSkills tarea.skills}}

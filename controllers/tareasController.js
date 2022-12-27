@@ -5,6 +5,48 @@ const { body, validationResult } = require("express-validator");
 const multer = require('multer');
 const shortid = require('shortid');
 
+exports.subirImagen1 = (req, res, next) => {
+    upload(req, res, function(error) {
+        if(error) {
+            if(error instanceof multer.MulterError) {
+                if(error.code === 'LIMIT_FILE_SIZE') {
+                    req.flash('error', 'El archivo es muy grande: Máximo 100kb ');
+                } else {
+                    req.flash('error', error.message);
+                }
+            } else {
+                req.flash('error', error.message);
+            }
+            res.redirect('/administracion');
+            return;
+        } else {
+            return next();
+        }
+    });
+}
+// Opciones de Multer
+const configuracionMulter = {
+    limits : { fileSize : 6000000 },
+    storage: fileStorage = multer.diskStorage({
+        destination : (req, file, cb) => {
+            cb(null, __dirname+'../../public/uploads/info');
+        }, 
+        filename : (req, file, cb) => {
+            const extension = file.mimetype.split('/')[1];
+            cb(null, `${shortid.generate()}.${extension}`);
+        }
+    }),
+    fileFilter(req, file, cb) {
+        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ) {
+            // el callback se ejecuta como true o false : true cuando la imagen se acepta
+            cb(null, true);
+        } else {
+            cb(new Error('Formato No Válido'));
+        }
+    }
+}
+
+const upload = multer(configuracionMulter).single('imagen1');
 
 exports.formularioNuevaTarea = (req, res) => {
     res.render('nueva-tarea', {
@@ -12,7 +54,8 @@ exports.formularioNuevaTarea = (req, res) => {
         tagline: 'Llena el formulario para publicar una nueva tarea',
         cerrarSesion: true,
         nombre: req.user.nombre,
-        imagen: req.user.imagen
+        imagen: req.user.imagen,
+        imagen1: req.user.imagen1
     })
     
 }
@@ -28,7 +71,13 @@ exports.agregarTarea = async (req, res) => {
     tarea.skills= req.body.skills.split(',');
 
    //console.log(tarea)
+   if(req.body.password) {
+    usuario.password = req.body.password
+    }
 
+    if(req.file) {
+        tarea.imagen1 = req.file.filename;
+    }
     // almacenar en la base de datos
    const nuevaTarea = await tarea.save();
 
@@ -39,14 +88,20 @@ exports.agregarTarea = async (req, res) => {
 // mustra una tarea
 exports.mostrarTarea = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url}).populate('autor').lean();
+     
+    //console.log(tarea);
+
 
     //si no hay resuktados
     if(!tarea) return next();
 
     res.render('tarea', {
-        tarea,
+       
         nombrePagina:  tarea.planta,
-        barra:true
+        tarea,
+        cerrarSesion: true,
+       // nombre: req.user.nombre,
+       // imagen: req.user.imagen,
     })
 }
 
@@ -60,8 +115,9 @@ exports.formEditarTarea = async (req, res, next) => {
         nombrePagina: `Editar - ${tarea.planta}`,
         cerrarSesion: true,
         nombre: req.user.nombre,
-        imagen: req.user.imagen
-        
+        imagen: req.user.imagen,
+        imagen1: req.user.imagen1
+         
     })
 }
 
@@ -69,15 +125,28 @@ exports.editarTarea = async (req, res) => {
     const tareaActualizada = req.body;
 
     tareaActualizada.skills = req.body.skills.split(',');
+   
+    if(req.body.password) {
+        usuario.password = req.body.password
+    }
+    
+    if(req.file) {
+        tareaActualizada.imagen1 = req.file.filename;
+    }
+
 
     const tarea = await Tarea.findOneAndUpdate({url: req.params.url}, tareaActualizada, {
         new:true,
         runValidators: true,
+        imagen1: req.user.imagen1
     }) ;
+
+    //const tarea = await tarea.save();
 
     res.redirect(`/tareas/${tarea.url}`);
 
 }
+
 
 //validar y sanitizar los campos de las nuevas tareas
 exports.validarTarea = async (req, res, next) => {
@@ -141,7 +210,7 @@ const verificarAutor = (tarea = {}, usuario = {}) => {
 
 //subir archivos en pdf
 exports.subirCV = (req, res, next) => {
-    upload(req, res, function(error) {
+    upload1(req, res, function(error) {
         if(error){
             
             if(error instanceof multer.MulterError) {
@@ -162,7 +231,7 @@ exports.subirCV = (req, res, next) => {
 }
 
 // Opciones de Multer
-const configuracionMulter = {
+const configuracionMulter1 = {
     limits : {fileSize: 200000},
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
@@ -184,11 +253,12 @@ const configuracionMulter = {
     
 }
 
-const upload = multer(configuracionMulter).single('cv');
+const upload1 = multer(configuracionMulter1).single('cv');
+//almacenar informe en BD
 
 exports.contactar = async (req, res, next) => {
 
-    const tarea = await Varea.findOne({url: req.params.url});
+    const tarea = await Tarea.findOne({url: req.params.url});
 
     //sino existe la tarea 
     if(!tarea) return next();
@@ -208,7 +278,27 @@ exports.contactar = async (req, res, next) => {
     res.redirect('/')
 }
 
-exports.mostrarCandidatos = async (req, res, next) => {
+exports.mostrarImagen1 = async (req, res, next) => {
+
+    const tarea = await Tarea.findOne({url: req.params.url});
+
+    //sino existe la tarea 
+    if(!tarea) return next();
+
+    //todo bien, construir el nuevo objeto
+    const nuevaImagen= {
+        imagen1 : req.file.filename
+    }
+    //almacenar la tarea
+    tarea.informes.push(nuevaImagen);
+    await tarea.save();
+
+    //mensaje flash y redireccion
+    req.flash('correcto', 'Se envió tu informe Correctamente');
+    res.redirect('/')
+}
+
+exports.mostrarInformes= async (req, res, next) => {
     const tarea = await Tarea.findById(req.params.id).lean();
 
     //validacion de autor
@@ -218,12 +308,12 @@ exports.mostrarCandidatos = async (req, res, next) => {
 
     if(!tarea) return next();
 
-    res.render('candidatos', {
-        nombrePagina: `Candidatos Tarea - ${tarea.planta}`,
+    res.render('informes', {
+        nombrePagina: `Informes Tarea - ${tarea.planta}`,
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        candidatos: tarea.candidatos
+        informes: tarea.informes
     })
 }
 

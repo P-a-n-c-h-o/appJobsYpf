@@ -7,7 +7,7 @@ const enviarEmail = require('../handlers/email');
 
 
 exports.autenticarUsuario = passport.authenticate('local', {
-    successRedirect : '/administracion',
+    successRedirect : '/',
     failureRedirect : '/iniciar-sesion',
     failureFlash : true,
     badRequestMessage : 'Ambos campos son obligatorios'

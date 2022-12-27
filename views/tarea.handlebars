@@ -9,7 +9,7 @@
         <p class="nombre">{{tarea.prioridad}}</p>
     </div>
     <div class="caja">
-        <p class="etiqueta">Fecha de Inicio</p>
+        <p class="etiqueta">Fecha Inicio</p>
         <p class="nombre">{{tarea.inicio}}</p>
     </div>
 
@@ -20,16 +20,27 @@
 </div>
 
 <div class="tarea-contenedor contenedor">
-    <main class="contenido">
+    <main class="contenido" method="POST" action="/tareas/{{tarea.url}}" class="default-form" enctype="multipart/form-data">
         <h2>Descripción de la Tarea</h2>
         <div class="tarea-descripcion">
             {{{tarea.descripcion}}}
         </div>
 
+        <div class="campo">
+            {{#if tarea.autor.imagen}}
+                <div class="caja">
+                    <a href="/uploads/info/{{tarea.imagen1}}" class="btn btn-verde">
+                    
+                        Ver Adjunto
+                    </a>
+                </div>
+            {{/if}} 
+        </div>
+
         <!--<a href="/tareas/editar/{{tarea.url}}" class="btn btn-azul editar-btn">Editar tarea</a>-->
     </main>
     <aside class="sidebar">
-        <h2>Técnica a Realizar</h2>
+        <h2>Técnica y Recursos a Realizar</h2>
         <ul class="skills">
             {{#each tarea.skills}}
                 <li>{{this}}</li>
@@ -60,8 +71,9 @@
             <div class="campo">
                  <input type="submit" class="btn btn-verde" value="Enviar">
             </div>
-        </form>
 
+
+        </form>
 
     </div>
 
@@ -74,4 +86,6 @@
             <img src="/uploads/perfiles/{{tarea.autor.imagen}}">
         {{/if}}
     </div>
+
+
 </div>

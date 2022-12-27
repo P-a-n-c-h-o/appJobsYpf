@@ -11,6 +11,7 @@ exports.mostrarObjetivos =  async (req, res, next) => {
         nombrePagina: 'appJobsYpf',
         tagline: 'Todas Tus Tareas Organizadas En Un Solo Lugar',
         barra: 'true',
+        cerrarSesion: true,
         boton: 'true',
         tareas
     })

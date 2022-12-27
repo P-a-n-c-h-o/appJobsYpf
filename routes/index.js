@@ -15,6 +15,7 @@ module.exports = () => {
     );
     router.post('/tareas/nueva',
         authController.verificarUsuario,
+        tareasController.subirImagen1,
         tareasController.validarTarea,
         tareasController.agregarTarea
     );
@@ -30,6 +31,7 @@ module.exports = () => {
     );
     router.post('/tareas/editar/:url',
         authController.verificarUsuario,
+        tareasController.subirImagen1,
         tareasController.validarTarea,   
         tareasController.editarTarea
     );
@@ -82,16 +84,18 @@ module.exports = () => {
         usuariosController.editarPerfil
     )
    
-    //Recibir Mensajes de candidatos
+    //Recibir Mensajes de informes
     router.post('/tareas/:url',
-    tareasController.subirCV,
-    tareasController.contactar
+       tareasController.subirCV,
+       tareasController.contactar,
+       tareasController.subirImagen1,
+       tareasController.mostrarImagen1
     );
 
-    //muetra los candidatos por tarea
-    router.get('/candidatos/:id', 
+    //muetra los informes por tarea
+    router.get('/informes/:id', 
         authController.verificarUsuario,
-        tareasController.mostrarCandidatos
+        tareasController.mostrarInformes
     )
     //Buscador de tareas
 

@@ -3,7 +3,7 @@ module.exports = {
         
         console.log(seleccionados);
 
-        const skills = ['RT', 'UT', 'RX', 'PT', 'MT', 'OG', 'AE', 'VT', 'ET', 'REPLICA', 'DUREZA', 'RELEVAMIENTO'];
+        const skills = ['RT', 'UT', 'RX', 'PT', 'MT', 'OG', 'AE', 'VT', 'ET', 'REPLICA', 'DUREZA', 'RELEVAMIENTO', 'ANDAMIOS', 'ASLACION', 'ANDAMOVIL', 'GRUA', 'CORTE DE CALLE'];
 
         let html = '';
         skills.forEach(skill => {
@@ -16,7 +16,24 @@ module.exports = {
 
     },
 
-    tipoContrato: (seleccionado, opciones) => {
+    seleccionarSkills1: (seleccionados1 = [], opciones) =>{
+        
+        console.log(seleccionados1);
+
+        const skills1 = ['ANDAMIOS', 'AISLACION', 'ANDAMOVIL'];
+
+        let html = '';
+        skills1.forEach(skill1 => {
+            html +=`
+                <li ${seleccionados1.includes(skill1) ? 'class="activo" ' : ''}>${skill1}</li>
+            `;
+        });
+
+        return opciones.fn().html = html;
+
+    },
+
+    tipoPrioridad: (seleccionado, opciones) => {
         return opciones.fn(this).replace(
             new RegExp(` value="${seleccionado}"`), '$& selected="selected"'
         )

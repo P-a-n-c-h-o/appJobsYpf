@@ -23,7 +23,7 @@ const usuariosSchema = new mongoose.Schema({      //new mongoose va almecenar si
     },
     token: String,
     expira: Date,
-    imagen: String
+    imagen: String,
 
 
 });

@@ -30,13 +30,16 @@ const tareasSchema =  new mongoose.Schema({
     descripcion: {
         type: String,
         trim: true,
+        
     },
+   
+    
     url: {
         type: String,
         lowercase:true
     },
     skills: [String],
-    candidatos: [{
+    informes: [{
         nombre: String,
         email: String,
         cv : String
@@ -45,7 +48,10 @@ const tareasSchema =  new mongoose.Schema({
        type: mongoose.Schema.ObjectId, 
        ref: 'Usuarios', 
        required: 'El autor es obligatorio'
-    }
+    },
+    imagen1 : String,
+    
+    
 });
 tareasSchema.pre('save' , function(next) {
 
