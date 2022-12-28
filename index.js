@@ -14,8 +14,8 @@ const flash = require ('connect-flash');
 const createError = require('http-errors')
 const passport = require('./config/passport');
 
-//require('dotenv').config({ path : 'variables.env'});
-require('dotenv').config({ path : 'variables.env'});
+//require('dotenv').config({ path : 'variablesypf.env'});
+require('dotenv').config({ path : 'variablesypf.env'});
 
 const app = express();
 
