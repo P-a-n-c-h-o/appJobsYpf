@@ -6,7 +6,7 @@ const shortid = require('shortid');
 const tareasSchema =  new mongoose.Schema({
     planta: {
         type: String, 
-        required: 'El nombre de la tarea es obligatorio',
+        required: 'El nombre de la planta es obligatorio',
         trim : true
     }, 
     empresa: {
@@ -49,7 +49,7 @@ const tareasSchema =  new mongoose.Schema({
        ref: 'Usuarios', 
        required: 'El autor es obligatorio'
     },
-    imagen1 : String,
+    imagen1:String,
     
     
 });
@@ -63,6 +63,6 @@ tareasSchema.pre('save' , function(next) {
 })
 
 //crear indice
-tareasSchema.index({ planta : 'text'});
+tareasSchema.index({ empresa : 'eq', planta : 'text'});
 
 module.exports = mongoose.model('Tarea', tareasSchema);

@@ -20,6 +20,8 @@ module.exports = () => {
         tareasController.agregarTarea
     );
 
+
+
     //Mostrar tarea (singular)
     router.get('/tareas/:url', tareasController.mostrarTarea);
 
@@ -100,7 +102,7 @@ module.exports = () => {
     //Buscador de tareas
 
     router.post('/buscador', tareasController.buscarTareas);
-
+    
     return router;
 
 }

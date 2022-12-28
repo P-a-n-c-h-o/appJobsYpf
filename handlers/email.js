@@ -5,11 +5,12 @@ const util = require('util');
 
 
 let transport = nodemailer.createTransport({
-    host: emailConfig.host,
-    port: emailConfig.port,
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth:{
-        user: emailConfig.user,
-        pass: emailConfig.pass
+        user: process.env.USERG ,
+        pass: process.env.PASSG 
     }
 });
 
@@ -28,7 +29,7 @@ transport.use('compile', hbs({
 
 exports.enviar = async(opciones) => {
     const opcionesEmail = {
-        from: 'appJobs <norepl@appjobs.com',
+        from: '"appJobsYpf" <appjobsypf@gmail.com>',
         to: opciones.usuario.email,
         subject : opciones.subject, 
         template: opciones.archivo,

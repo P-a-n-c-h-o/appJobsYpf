@@ -24,6 +24,7 @@ exports.subirImagen1 = (req, res, next) => {
         }
     });
 }
+
 // Opciones de Multer
 const configuracionMulter = {
     limits : { fileSize : 6000000 },
@@ -320,12 +321,12 @@ exports.mostrarInformes= async (req, res, next) => {
 // Buscador de tareas
 exports.buscarTareas = async (req,res) =>{
     const tareas = await Tarea.find({
-        $text : {
-            $search : req.body.q
+        empresa : {
+            $eq : req.body.q
         }
     }).lean();
 
-   // modstrar las tareas
+   //modstrar las tareas
    res.render('home', {
     nombrePagina: `Resultados para la búsqueda: ${req.body.q}`,
     barra:true,

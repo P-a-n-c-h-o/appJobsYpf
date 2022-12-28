@@ -21,6 +21,9 @@ const usuariosSchema = new mongoose.Schema({      //new mongoose va almecenar si
         trim: true
 
     },
+    cloudinary_id:{
+        type: String,
+    },
     token: String,
     expira: Date,
     imagen: String,

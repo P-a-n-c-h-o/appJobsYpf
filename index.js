@@ -7,6 +7,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const fileupload = require('express-fileupload');
 const bodyParser = require('body-parser');
 //const expressValidator = require ('express-validator');
 const flash = require ('connect-flash');
@@ -85,6 +86,60 @@ app.use((error, req, res,next) =>{
 //dejar que heroku asigne el puerto 
 const host= '0.0.0.0';
 const port = process.env.PORT || 3000;
+
+/*app.use('/public/uploads/info', upload.array('image'), async (req, res) => {
+    const uploader = async (path) => await cloudinary.uploads(path,'Images')
+
+    if (req.method === 'POST')
+    {
+        const urls = []
+
+        const files = req.files
+
+        for(const file of files){
+            const {path} = file
+
+            const newPath = await uploader(path)
+
+            urls.push(newPath)
+
+            fs.unlinkSync(path)
+        }
+
+        res.status(200).json({
+            message:'Imagen Guardada con Exito',
+            data: urls
+        })
+
+    }else{
+        res.status(405).json({
+            err:"la imagen no se cargo cortrectamente "
+        })
+        
+    }
+})*/
+
+app.use(express.json());
+app.use(fileupload({
+    useTempFiles : true,
+}))
+
+
+
+
+app.post("/", async (req,res)=> {
+    const file = req.files.image;
+    const result = await cloudinary.uploader.upload(file.tempFilePath, {
+        public_id: `${Date.now()}`,
+        resource_type: "auto",
+        folder: "images"
+    })
+
+    res.json(result.info.secure.url);
+
+})
+
+    
 
 app.listen(port, host, ()=>{
     console.log('El servidor esta funcionando');
