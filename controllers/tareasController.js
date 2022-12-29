@@ -233,7 +233,7 @@ exports.subirCV = (req, res, next) => {
 
 // Opciones de Multer
 const configuracionMulter1 = {
-    limits : {fileSize: 200000},
+    limits : {fileSize: 6000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
             cb(null, __dirname+'../../public/uploads/cv')
@@ -244,7 +244,7 @@ const configuracionMulter1 = {
         }
     }),
     fileFilter(req, file, cb){
-        if(file.mimetype === 'application/pdf'){
+        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ){
             //el callback se ejecuta como ture o false: true cuando la imagen se acepta
             cb(null, true);
         } else{
