@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const flash = require ('connect-flash');
 const createError = require('http-errors')
 const passport = require('./config/passport');
+mongoose.set('strictQuery', false);
 
 //require('dotenv').config({ path : 'variablesypf.env'});
 require('dotenv').config({ path : 'variablesypf.env'});
