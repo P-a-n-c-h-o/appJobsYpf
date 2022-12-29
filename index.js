@@ -16,7 +16,7 @@ const passport = require('./config/passport');
 mongoose.set('strictQuery', false);
 
 //require('dotenv').config({ path : 'variablesypf.env'});
-require('dotenv').config({ path : 'variablesypf.env'});
+require('dotenv').config({ path : 'variablesYpf.env'});
 
 const app = express();
 
@@ -51,6 +51,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection : mongoose.connection })
+    
 }));
 
 //Inicializar Passport

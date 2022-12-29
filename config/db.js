@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-require('dotenv').config({path: 'variablesypf.env' });
+require('dotenv').config({path: 'variablesYpf.env' });
 
 
 mongoose.connect(process.env.DATABASE, {useNewUrlParser:true});
