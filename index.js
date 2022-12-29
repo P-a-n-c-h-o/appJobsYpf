@@ -16,7 +16,7 @@ const passport = require('./config/passport');
 mongoose.set('strictQuery', false);
 
 //require('dotenv').config({ path : 'variablesypf.env'});
-require('dotenv').config({ path : 'variablesYpf.env'});
+require('dotenv').config({ path : 'variablesAppYpf.env'});
 
 const app = express();
 
