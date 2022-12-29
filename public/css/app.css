@@ -144,10 +144,10 @@ h3 {
     display: flex;
     justify-content: center;
     place-self: center ;
-    
+    flex: 1;
 }
 .buscador form {
-    flex:10px;
+    flex: 1;
     position: relative;
 }
 @media (min-width: 1000px) {
@@ -174,11 +174,11 @@ h3 {
     background-color: rgba(255,255,255,.1);
     width: 100%;
     border: none;
-    padding: .5rem 30rem .5rem 2rem;
+    padding: .5rem 4rem .5rem 2rem;
     height: 5rem;
     border-radius: 1rem;
     color: white;
-    font-size: 3rem;
+    font-size: 1.2rem;
 }
 .buscador input[type="submit"] {
     display: block;

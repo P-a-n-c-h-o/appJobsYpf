@@ -321,8 +321,8 @@ exports.mostrarInformes= async (req, res, next) => {
 // Buscador de tareas
 exports.buscarTareas = async (req,res) =>{
     const tareas = await Tarea.find({
-        empresa : {
-            $eq : req.body.q
+        $text: {
+            $search : req.body.q
         }
     }).lean();
 

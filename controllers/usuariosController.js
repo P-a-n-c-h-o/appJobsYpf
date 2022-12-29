@@ -76,7 +76,7 @@ exports.validarRegistro = async (req, res, next) => {
         req.flash('error', errores.array().map(error => error.msg));
         res.render('crear-cuenta', {
             nombrePagina: 'Crea una cuenta en appjobsYpf',
-            tagline: 'Comienza a publicar tus tareas gratis, solo debes crear una cuenta',
+            tagline: 'Comienza a publicar tus tareas, solo debes crear una cuenta',
             mensajes: req.flash(),
         })
         return;
@@ -103,7 +103,7 @@ exports.crearUsuario = async (req, res, next) => {
 // formulario para iniciar sesion
 exports.formIniciarSesion =(req, res) =>{
     res.render('iniciar-sesion', {
-        nombrePagina: 'Iinicair Sesión en appJobs'
+        nombrePagina: 'Iinicair Sesión en appJobsYpf'
     })
 }
 
