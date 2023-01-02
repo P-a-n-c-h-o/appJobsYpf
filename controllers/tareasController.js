@@ -6,7 +6,7 @@ const multer = require('multer');
 const shortid = require('shortid');
 
 exports.subirImagen1 = (req, res, next) => {
-    upload(req, res, function(error) {
+    upload1(req, res, function(error) {
         if(error) {
             if(error instanceof multer.MulterError) {
                 if(error.code === 'LIMIT_FILE_SIZE') {
@@ -26,7 +26,7 @@ exports.subirImagen1 = (req, res, next) => {
 }
 
 // Opciones de Multer
-const configuracionMulter = {
+const configuracionMulter1 = {
     limits : { fileSize : 6000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
@@ -47,7 +47,7 @@ const configuracionMulter = {
     }
 }
 
-const upload = multer(configuracionMulter).single('imagen1');
+const upload1 = multer(configuracionMulter1).single('imagen1');
 
 exports.formularioNuevaTarea = (req, res) => {
     res.render('nueva-tarea', {
@@ -211,7 +211,7 @@ const verificarAutor = (tarea = {}, usuario = {}) => {
 
 //subir archivos en pdf
 exports.subirCV = (req, res, next) => {
-    upload1(req, res, function(error) {
+    upload(req, res, function(error) {
         if(error){
             
             if(error instanceof multer.MulterError) {
@@ -232,8 +232,8 @@ exports.subirCV = (req, res, next) => {
 }
 
 // Opciones de Multer
-const configuracionMulter1 = {
-    limits : {fileSize: 6000000 },
+const configuracionMulter = {
+    limits : {fileSize: 200000},
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
             cb(null, __dirname+'../../public/uploads/cv')
@@ -244,7 +244,7 @@ const configuracionMulter1 = {
         }
     }),
     fileFilter(req, file, cb){
-        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ){
+        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ) {
             //el callback se ejecuta como ture o false: true cuando la imagen se acepta
             cb(null, true);
         } else{
@@ -254,52 +254,33 @@ const configuracionMulter1 = {
     
 }
 
-const upload1 = multer(configuracionMulter1).single('cv');
-//almacenar informe en BD
+const upload = multer(configuracionMulter).single('cv');
 
 exports.contactar = async (req, res, next) => {
 
     const tarea = await Tarea.findOne({url: req.params.url});
 
-    //sino existe la tarea 
+    //sino existe la vacante 
     if(!tarea) return next();
 
     //todo bien, construir el nuevo objeto
-    const nuevoCandidato = {
+    const nuevoInforme = {
         nombre: req.body.nombre,
         email: req.body.email,
         cv: req.file.filename
     }
-    //almacenar la tarea
-    tarea.candidatos.push(nuevoCandidato);
+    //almacenar la vacante
+    tarea.informes.push(nuevoInforme);
     await tarea.save();
 
     //mensaje flash y redireccion
-    req.flash('correcto', 'Se envió tu informe Correctamente');
+    req.flash('correcto', 'Se envió tu Informe Correctamente');
     res.redirect('/')
+
 }
 
-exports.mostrarImagen1 = async (req, res, next) => {
 
-    const tarea = await Tarea.findOne({url: req.params.url});
-
-    //sino existe la tarea 
-    if(!tarea) return next();
-
-    //todo bien, construir el nuevo objeto
-    const nuevaImagen= {
-        imagen1 : req.file.filename
-    }
-    //almacenar la tarea
-    tarea.informes.push(nuevaImagen);
-    await tarea.save();
-
-    //mensaje flash y redireccion
-    req.flash('correcto', 'Se envió tu informe Correctamente');
-    res.redirect('/')
-}
-
-exports.mostrarInformes= async (req, res, next) => {
+exports.mostrarInformes = async (req, res, next) => {
     const tarea = await Tarea.findById(req.params.id).lean();
 
     //validacion de autor
@@ -317,6 +298,7 @@ exports.mostrarInformes= async (req, res, next) => {
         informes: tarea.informes
     })
 }
+
 
 // Buscador de tareas
 exports.buscarTareas = async (req,res) =>{

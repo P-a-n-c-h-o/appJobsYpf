@@ -88,10 +88,9 @@ module.exports = () => {
    
     //Recibir Mensajes de informes
     router.post('/tareas/:url',
-       tareasController.subirCV,
-       tareasController.contactar,
-       tareasController.subirImagen1,
-       tareasController.mostrarImagen1
+        tareasController.subirCV,
+        tareasController.contactar,
+
     );
 
     //muetra los informes por tarea

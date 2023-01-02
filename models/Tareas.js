@@ -63,6 +63,6 @@ tareasSchema.pre('save' , function(next) {
 })
 
 //crear indice
-tareasSchema.index({ empresa : 'eq', planta : 'text'});
+tareasSchema.index({ empresa : 'text', planta : 'text'});
 
 module.exports = mongoose.model('Tarea', tareasSchema);
