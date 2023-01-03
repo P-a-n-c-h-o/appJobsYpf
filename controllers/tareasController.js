@@ -27,7 +27,7 @@ exports.subirImagen1 = (req, res, next) => {
 
 // Opciones de Multer
 const configuracionMulter1 = {
-    limits : { fileSize : 6000000 },
+    limits : { fileSize : 600000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
             cb(null, __dirname+'../../public/uploads/info');
@@ -233,7 +233,7 @@ exports.subirCV = (req, res, next) => {
 
 // Opciones de Multer
 const configuracionMulter = {
-    limits : {fileSize: 200000},
+    limits : {fileSize: 2000000000},
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
             cb(null, __dirname+'../../public/uploads/cv')
