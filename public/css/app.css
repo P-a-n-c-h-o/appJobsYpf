@@ -152,24 +152,11 @@ h3 {
 }
 @media (min-width: 1000px) {
     .buscador form {
-        flex: 0 0 40%;
+        flex: 0 0 60%;
 
     }
 }
-@media (max-width:1000px){
-    .nombre-sitio  {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .nombre-sitio a {
-        text-align: center;
-    }
 
-
-
-}
 .buscador input[type="text"] {
     background-color: rgba(255,255,255,.1);
     width: 100%;
@@ -199,7 +186,28 @@ h3 {
     cursor: pointer;
 }
 
+@media (max-width:1000px){
+    .nombre-sitio  {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .nombre-sitio a {
+        text-align: center;
+    }
+    .buscador {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
+    }
+
+
+
+}
 
 .informe,
 .tarea {
