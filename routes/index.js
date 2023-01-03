@@ -100,7 +100,11 @@ module.exports = () => {
     )
     //Buscador de tareas
 
-    router.post('/buscador', tareasController.buscarTareas);
+    router.post('/buscador', 
+        tareasController.buscarTareas,
+        
+    );
+    
     
     return router;
 

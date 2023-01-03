@@ -300,18 +300,22 @@ exports.mostrarInformes = async (req, res, next) => {
 }
 
 
-// Buscador de tareas
+// Buscador de Vacantes
 exports.buscarTareas = async (req,res) =>{
-    const tareas = await Tarea.find({
-        $text: {
-            $search : req.body.q
-        }
-    }).lean();
+    const tareas = await Tarea.find(({
+        
+        empresa: new RegExp(req.body.q, 'i'),
 
-   //modstrar las tareas
+        //planta:new RegExp(req.body.q, 'i'),
+    
+    })).lean();
+
+    
+   // modstrar las vacantes
    res.render('home', {
     nombrePagina: `Resultados para la búsqueda: ${req.body.q}`,
     barra:true,
-    tareas
+    tareas,
    })
 }
+
