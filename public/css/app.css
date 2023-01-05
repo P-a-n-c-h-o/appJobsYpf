@@ -571,10 +571,14 @@ p.informes {
 .cerrar-sesion p, 
 .cerrar-sesion a {
     color: #888;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: ease-in .3s;
 }
 .cerrar-sesion a:hover{
     background:#00C897;
     color: white;
+
 }
 .cerrar-sesion {
     color: white;
