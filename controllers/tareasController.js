@@ -38,7 +38,7 @@ const configuracionMulter1 = {
         }
     }),
     fileFilter(req, file, cb) {
-        if(file.mimetype === 'image/jpeg','application/pdf','application/vnd.ms-excel' || file.mimetype === 'image/jpeg','application/pdf','application/vnd.ms-excel' ) {
+        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ) {
             // el callback se ejecuta como true o false : true cuando la imagen se acepta
             cb(null, true);
         } else {
@@ -244,7 +244,7 @@ const configuracionMulter = {
         }
     }),
     fileFilter(req, file, cb){
-        if(file.mimetype === 'image/jpeg','application/pdf','application/vnd.ms-excel' || file.mimetype === 'image/jpeg','application/pdf','application/vnd.ms-excel' ) {
+        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ) {
             //el callback se ejecuta como ture o false: true cuando la imagen se acepta
             cb(null, true);
         } else{
