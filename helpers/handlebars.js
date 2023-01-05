@@ -3,7 +3,7 @@ module.exports = {
         
         console.log(seleccionados);
 
-        const skills = ['RT', 'UT', 'RX', 'PT', 'MT', 'OG', 'AE', 'VT', 'ET', 'REPLICA', 'DUREZA', 'RELEVAMIENTO', 'ANDAMIOS', 'ASLACION', 'ANDAMOVIL', 'GRUA', 'CORTE DE CALLE'];
+        const skills = ['RT', 'UT', 'RX', 'PT', 'MT', 'OG', 'AE', 'VT', 'ET', 'REPLICA', 'DUREZA', 'RELEVAMIENTO', 'ANDAMIOS', 'ASLACION', 'ANDAMOVIL', 'GRUA', 'CORTE DE CALLE','ESPACIO CONFINADO'];
 
         let html = '';
         skills.forEach(skill => {
