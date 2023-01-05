@@ -131,13 +131,19 @@ h3 {
 }
 
 .nombre-sitio {
-    display: flex;
-    justify-content: space-between;
+    padding: 2em;
     align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
+
 .nombre-sitio a {
     color: white;
     text-decoration: none;
+}
+.nombre-sitio .active:hover {
+    color: #00A4B6;
 }
 .buscador {
     padding-top: 1rem;
@@ -251,17 +257,11 @@ h3 {
         display: flex;
     }
     .tarea {
+        justify-content: space-around;
         display: flex;
         
     }
-    .caja {
-        flex: 1;
-        
-    }
-    .caja:first-of-type{
-        flex:  1;
-        
-    }
+
     
 }
 @media (max-width:1000px) {
@@ -566,24 +566,26 @@ p.informes {
 .admin-perfil {
     width: 120px;
     align-self: flex-start;
-    margin-right: 1rem;
     border-radius: 100%;
 }
 .cerrar-sesion p, 
 .cerrar-sesion a {
-    margin:  0 4rem 0 0 ;
     color: #888;
-    align-items: center;
+}
+.cerrar-sesion a:hover{
+    background:#00C897;
+    color: white;
 }
 .cerrar-sesion {
-    margin-top: 2rem;
     color: white;
+    width: 50%;
+    justify-content: space-around;
     display: flex;
     align-items: center;
+    
 }
 .cerrar-sesion img {
     width: 60px;
-    align-items: center;
 }
 
 
@@ -613,15 +615,7 @@ p.informes {
 
 }
 @media (max-width:1000px){
-    .nombre-sitio  {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-        
-    }
-    .nombre-sitio a {
-        text-align: center;
-    }
+
     .cerrar-sesion p, 
     .cerrar-sesion a {
         margin:  0 2rem 0 0 ;
@@ -629,12 +623,13 @@ p.informes {
         align-items: center;
     }
     .cerrar-sesion {
+
         margin-top: 2rem;
         margin-left: 20px;
         color: white;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
     }
     .cerrar-sesion img {
         margin-right: 20px;
