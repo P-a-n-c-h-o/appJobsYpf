@@ -194,11 +194,10 @@ h3 {
 
 @media (max-width:1000px){
     .nombre-sitio  {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        padding-left: 0ch;
         flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px; 
     }
     .nombre-sitio a {
         text-align: center;
@@ -398,6 +397,24 @@ h3 {
     color:white;
     font-weight: 700;
     text-transform: uppercase;
+}
+@media (max-width:1000px){
+    .default-form {
+        margin: 4rem  auto 0 auto; 
+    }
+    .default-form .campo {
+        margin-bottom: 3rem;
+        display: flex; 
+          
+    }
+    .default-form label {
+        padding-top: 1rem;
+        flex: 0 0 10rem;
+        font-size: 1.8rem;
+        color:white;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
 }
 
 .default-form input[type="email"],
@@ -761,6 +778,7 @@ p.informes {
     }
     .info-reclutador img {
         width: 200px;
+        border-radius: 10PX;
 
     } 
     .btn{
