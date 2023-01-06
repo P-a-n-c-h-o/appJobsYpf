@@ -33,7 +33,7 @@ h3 {
 
 .contenedor {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .separador {
@@ -785,10 +785,7 @@ p.informes {
         text-align: center;
     }
     .btn-verde{
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+
         margin: auto;
     }
 
