@@ -63,6 +63,14 @@ h3 {
     background-color: rgb(10, 155, 119);
 }
 
+.verde-salvaje {
+    
+    background-color: #00C897;
+}
+.verde-salvaje:hover {
+    background-color: rgb(10, 155, 119);
+}
+
 .btn-azul {
     background-color: #00A4B6;
 }
@@ -194,11 +202,13 @@ h3 {
 
 @media (max-width:1000px){
     .nombre-sitio  {
-        padding-left: 0ch;
+        padding: 1ch 0ch 0ch;
+        display: flex;
+        justify-content: center;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 40px; 
-    }
+        margin-bottom: 40px;
+     }
     .nombre-sitio a {
         text-align: center;
     }
@@ -658,7 +668,11 @@ p.informes {
         width: 60px;
         align-items: center;
     }
-
+    .cerrar-sesion a:hover{
+        background:#00C897;
+        color: white;
+    
+    }
 
 }
 
