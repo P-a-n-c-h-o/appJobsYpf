@@ -637,23 +637,24 @@ p.informes {
 }
 @media (max-width:1000px){
 
-    .cerrar-sesion p, 
-    .cerrar-sesion a {
-        margin:  0 2rem 0 0 ;
+    .cerrar-sesion p, .cerrar-sesion a {
         color: #888;
-        align-items: center;
+        padding: 10px 20px;
+        border-radius: 10px;
+        transition: ease-in .3s;
+        margin-left: 0px;
     }
     .cerrar-sesion {
-
+        padding-left: 0px;
         margin-top: 2rem;
-        margin-left: 20px;
+        margin-left: 0px;
         color: white;
         display: flex;
         align-items: center;
         justify-content: space-around;
     }
     .cerrar-sesion img {
-        margin-right: 20px;
+        margin-right: 5px;
         width: 60px;
         align-items: center;
     }
