@@ -79,7 +79,7 @@ app.use((req, res, next) => {
 //Administracion de los errores
 app.use((error, req, res,next) =>{
     res.locals.mensaje = error.message;
-    const status = error.status || 3000;
+    const status = error.status || 4000;
     res.locals.status = status;
     res.status(status);
     res.render('error');
@@ -87,7 +87,7 @@ app.use((error, req, res,next) =>{
 
 //dejar que heroku asigne el puerto 
 const host= '0.0.0.0';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 /*app.use('/public/uploads/info', upload.array('image'), async (req, res) => {
     const uploader = async (path) => await cloudinary.uploads(path,'Images')

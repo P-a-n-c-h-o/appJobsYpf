@@ -3,7 +3,7 @@ const Tarea = mongoose.model('Tarea');
 
 exports.mostrarObjetivos =  async (req, res, next) => {
     
-    const tareas = await Tarea.find().lean(); //FIND().lean() se encacrga de traernos todos los datos que tengamos en la DB
+    const tareas = await Tarea.find().sort( {prioridad:1, inicio:1} ).lean(); //FIND().lean() se encacrga de traernos todos los datos que tengamos en la DB
  
     if(!tareas) return next();//si no hay tareas nos vamos al siguiente midelwer
 
