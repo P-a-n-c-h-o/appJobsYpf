@@ -51,7 +51,7 @@ const upload = multer(configuracionMulter).single('imagen');
 exports.formCrearCuenta = (req, res) => {
     res.render('crear-cuenta', {
         nombrePagina: 'Crea tu cuenta en appJobsYpf',
-        tagline: 'Comienza a publicar tus tareas gratis, solo debes crear una cuenta'
+        tagline: 'Comienza a publicar tus tareas, solo debes crear una cuenta'
     })
 }
 

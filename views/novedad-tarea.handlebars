@@ -1,0 +1,31 @@
+<main class="lista-informes">
+    <h2>Lista de Informes</h2
+    {{#if novedad.length}} <!-- si existe un informe-->
+        {{#each novedad}}
+            <div class="novedades">
+                <div class="cajass">
+                    <p class="etiqueta">Nombre:</p>
+                    <p class="nombre">{{nombre}}</p>
+                </div>
+                <div class="cajass">
+                    <p class="etiqueta">E-mail</p>
+                    <p class="nombre">{{email}}</p>
+                </div>
+                <div class="cajass1">
+                    <a href="/uploads/nov/{{nove}}" class="verdess">
+                    
+                        Ver Novedad
+                    </a>
+                </div>
+                <h2>Descripción de la Tarea</h2>
+                <div class="descripcion">
+                    {{{descripNov}}}
+                </div>
+            </div>
+
+        {{/each}}
+    {{else}}
+        <p>No hay informes aún</p>
+
+    {{/if}}
+</main>

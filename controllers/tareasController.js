@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const Tarea = mongoose.model('Tarea');
+
 const { body, validationResult } = require("express-validator");
 //const Tarea =('../models/Tareas.js')
 const multer = require('multer');
 const shortid = require('shortid');
+
+//subir imagen en tares
 
 exports.subirImagen1 = (req, res, next) => {
     upload1(req, res, function(error) {
@@ -86,11 +89,12 @@ exports.agregarTarea = async (req, res) => {
    res.redirect(`/tareas/${nuevaTarea.url}`);
 }
 
+
+
 // mustra una tarea
 exports.mostrarTarea = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url}).populate('autor').lean();
-     
-    //console.log(tarea);
+     //console.log(tarea);
 
 
     //si no hay resuktados
@@ -146,6 +150,8 @@ exports.editarTarea = async (req, res) => {
 
     res.redirect(`/tareas/${tarea.url}`);
 
+ 
+
 }
 
 
@@ -197,7 +203,7 @@ exports.eliminarTarea = async (req, res) => {
         res.status(403).send('Error')
     }
 
-    console.log(tarea);
+    //console.log(tarea);
 
     
 }
@@ -209,7 +215,8 @@ const verificarAutor = (tarea = {}, usuario = {}) => {
     return true;
 }
 
-//subir archivos en pdf
+//subir archivos en contactar inspectar
+
 exports.subirCV = (req, res, next) => {
     upload(req, res, function(error) {
         if(error){
@@ -256,8 +263,60 @@ const configuracionMulter = {
 
 const upload = multer(configuracionMulter).single('cv');
 
-exports.contactar = async (req, res, next) => {
+//subir archivos en contactar inspectar
 
+exports.subirNov = (req, res, next) => {
+    upload2(req, res, function(error) {
+        if(error){
+            
+            if(error instanceof multer.MulterError) {
+                if(error.code === 'LIMIT_FILE_SIZE'){
+                    req.flash('error', 'El archivo es muy grande: Máximo 300kb');
+                }else{
+                    req.flash('error', error.message)
+                }
+            } else {
+                req.flash('error', error.message);
+            }
+            res.redirect('back');
+            return;       
+        }else {
+            return next();
+        }
+    });
+}
+
+// Opciones de Multer
+const configuracionMulter2 = {
+    limits : {fileSize: 2000000000},
+    storage: fileStorage = multer.diskStorage({
+        destination : (req, file, cb) => {
+            cb(null, __dirname+'../../public/uploads/nov')
+        },
+        filename: (req, file,cb) => {
+            const extension = file.mimetype.split('/')[1]
+            cb(null,`${shortid.generate()}.${extension}`);
+        }
+    }),
+    fileFilter(req, file, cb){
+        if(file.mimetype === 'image/jpeg','application/pdf' || file.mimetype === 'image/jpeg','application/pdf' ) {
+            //el callback se ejecuta como ture o false: true cuando la imagen se acepta
+            cb(null, true);
+        } else{
+            cb(new Error('Formato No Valido'), false);
+        }
+    },
+    
+}
+
+const upload2 = multer(configuracionMulter2).single('nove');
+
+//almacenar informes 
+
+exports.contactarInfo = async (req, res, next) => {
+
+
+    
     const tarea = await Tarea.findOne({url: req.params.url});
 
     //sino existe la vacante 
@@ -267,7 +326,8 @@ exports.contactar = async (req, res, next) => {
     const nuevoInforme = {
         nombre: req.body.nombre,
         email: req.body.email,
-        cv: req.file.filename
+        cv: req.file.filename,
+        
     }
     //almacenar la vacante
     tarea.informes.push(nuevoInforme);
@@ -275,9 +335,76 @@ exports.contactar = async (req, res, next) => {
 
     //mensaje flash y redireccion
     req.flash('correcto', 'Se envió tu Informe Correctamente');
-    res.redirect('/')
+    res.redirect(`/tareas/${tarea.url}`)
+    
 
 }
+
+//almacenar novedades
+
+exports.contactarNov = async (req, res, next) => {
+
+    
+    const tarea = await Tarea.findOne({url: req.params.url});
+
+    //console.log(tarea)
+
+    //sino existe la vacante 
+    if(!tarea) return next();
+
+    //todo bien, construir el nuevo objeto
+    const nuevaNovedad = {
+        nombre: req.body.nombre,
+        email: req.body.email,
+        descripNov: req.body.descripNov,
+        nove: req.file.filename,
+    }
+    //almacenar la vacante
+    tarea.novedad.push(nuevaNovedad);
+    await tarea.save();
+    
+    //console.log(tarea)
+    //mensaje flash y redireccion
+    req.flash('correcto', 'Se envió tu Novedad Correctamente');
+    res.redirect(`/tareas/${tarea.url}`)
+  
+
+}
+
+/*
+exports.mostrarPanelNovedades = async (req, res) => {
+
+    //consultar el usaurio atenticado
+    const tareas = await Tarea.find({autor: req.user._id}).lean();
+
+
+    res.render('novedades', {
+        nombrePagina: 'Panel de Novedades',
+        tagline: 'Controla las novedades, tienes algo pendiente para hoy??',
+        cerrarSesion: true,
+        nombre: req.user.nombre,
+        imagen: req.user.imagen,
+        tareas
+    })
+
+}
+*/
+exports.mostrarPanelNovedades = async (req, res) => {
+
+    //consultar el usaurio atenticado
+    const tareas = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+
+       
+        return res.render('novedades', {
+            nombrePagina: 'Panel de Novedades',
+            tagline: 'Controla las novedades, tienes algo pendiente para hoy??',
+            cerrarSesion: true,
+            nombre: req.user.nombre,
+            imagen: req.user.imagen,
+            tareas
+        })
+}
+
 
 
 exports.mostrarInformes = async (req, res, next) => {
@@ -296,6 +423,25 @@ exports.mostrarInformes = async (req, res, next) => {
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         informes: tarea.informes
+    })
+}
+
+exports.mostrarNovedad = async (req, res, next) => {
+    const tarea = await Tarea.findById(req.params.id).lean();
+
+    //validacion de autor
+    if(tarea.autor != req.user._id.toString()){
+        return next();
+    } 
+
+    if(!tarea) return next();
+
+    res.render('novedad-tarea', {
+        nombrePagina: `Novedades Tarea - ${tarea.planta}`,
+        cerrarSesion: true,
+        nombre: req.user.nombre,
+        imagen: req.user.imagen,
+        novedad: tarea.novedad
     })
 }
 

@@ -224,7 +224,11 @@ h3 {
 
 }
 
-.informe,
+.informe{
+    text-align: center;
+    justify-content: space-around;
+    padding-top: 40px;
+}
 .tarea {
     padding: 3rem 0;
     border-bottom: 1px solid #272727;
@@ -250,9 +254,40 @@ h3 {
     margin: 0;
     text-align: left;
 }
+.caja1 .etiqueta {
+    font-weight: 700;
+    color: #616065;
+    font-size: 2.6rem;
+    margin: 0;
+    text-align: left;
+}
+.caja1 .nombre { 
+    font-size: 2.4rem; 
+    margin: .5rem 0; 
+    text-align: left;
+}
+.caja1 .etiqueta {
+    margin:1rem 0 0 0;
+}
+.caja2 .etiqueta {
+    font-weight: 700;
+    color: #616065;
+    font-size: 2.6rem;
+    margin: 0;
+    text-align: center;
+}
+.caja2 .nombre { 
+    font-size: 2.4rem; 
+    margin: .5rem 0; 
+    text-align: center;
+}
+.caja2 .etiqueta {
+    margin:1rem 0 0 0;
+}
 .caja .etiqueta {
     margin:1rem 0 0 0;
 }
+
 .caja .nombre { 
     font-size: 2.4rem; 
     margin: .5rem 0; 
@@ -260,6 +295,9 @@ h3 {
 }
 .caja .btn {
     text-align: center;
+}
+.caja3 .btn {
+    text-align: right;
 }
 @media (min-width:1000px) {
     .informe{
@@ -302,6 +340,65 @@ h3 {
 
 
 }
+.novedades{
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-overflow: clip;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+}
+.novedades .cajass .nombre{
+    padding-top: 10px;
+    font-size: 2.4rem; 
+    margin: .5rem 0; 
+    padding-bottom: 10px;
+}
+
+.novedades .verdess{
+    font-size: 1.8rem;
+    padding: 1.4rem 6rem;
+    border-radius: .6rem;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color .2s ease-out;
+    background-color: #00C897;
+
+}
+.novedades .cajass1{
+    padding-top: 20px;
+}
+.verdess:hover {
+    background-color: rgb(10, 155, 119);
+}
+.novedades a{
+    padding-top: 100px;
+}
+
+
+.novedades .cajass .etiqueta{
+    font-weight: 700;
+    color: #616065;
+    font-size: 2.6rem;
+    margin: 0;
+    padding: 10px;
+}
+
+.novedades .descripcion *{
+    padding-top: 10px;
+    color: wheat!important;
+    line-height: 2.2;
+    font-size: 2.6rem;
+}
+.novedades h2{
+    padding-top: 50px;
+    line-height: 1.4;
+}
+
 .centrar-vertical{
     display: flex;
     align-items: center;
@@ -393,7 +490,20 @@ h3 {
     font-size: 2.4rem;
     margin-bottom: 3rem;
     text-transform: uppercase;
-    
+}
+
+.datos-reclutador h3{
+    color: white;
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    text-align: center; 
+}
+.datos-reclutador .campo.descripcion label{
+    color: #616065;
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
 }
 .default-form .campo {
     margin-bottom: 3rem;
@@ -600,18 +710,29 @@ p.informes {
     align-self: flex-start;
     border-radius: 100%;
 }
-.cerrar-sesion p, 
+.cerrar-sesion .hola, 
 .cerrar-sesion a {
     color: #888;
     padding: 10px 20px;
     border-radius: 10px;
     transition: ease-in .3s;
 }
+.cerrar-sesion .nov{
+    color: red;
+    border-radius: 10px;
+    transition: ease-in .3s;
+}
+
+.cerrar-sesion .nov:hover{
+    background:#00C897;
+    color:white;
+}
+
 .cerrar-sesion a:hover{
     background:#00C897;
-    color: white;
-
+    color:white;
 }
+
 .cerrar-sesion {
     color: white;
     width: 50%;
@@ -652,13 +773,7 @@ p.informes {
 }
 @media (max-width:1000px){
 
-    .cerrar-sesion p, .cerrar-sesion a {
-        color: #888;
-        padding: 10px 20px;
-        border-radius: 10px;
-        transition: ease-in .3s;
-        margin-left: 0px;
-    }
+
     .cerrar-sesion {
         padding-left: 0px;
         margin-top: 2rem;
@@ -673,11 +788,35 @@ p.informes {
         width: 60px;
         align-items: center;
     }
+    .cerrar-sesion .hola, 
+    .cerrar-sesion a {
+        color: #888;
+        padding: 10px 20px;
+        border-radius: 10px;
+        transition: ease-in .3s;
+    }
+    .cerrar-sesion .nov{
+        color: rgb(255, 0, 0);
+        padding: 10px 20px;
+        border-radius: 10px;
+        transition: ease-in .3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .cerrar-sesion .nov:hover{
+        background:#00C897;
+        color:white;
+    }
+    
     .cerrar-sesion a:hover{
         background:#00C897;
-        color: white;
-    
+        color:white;
     }
+    
+
 
 }
 

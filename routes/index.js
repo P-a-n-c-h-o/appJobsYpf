@@ -6,7 +6,7 @@ const usuariosController = require('../controllers/usuariosController');
 const authController = require('../controllers/authController');
 
 module.exports = () => {
-    router.get('/', homeController.mostrarObjetivos);
+    router.get('/', authController.verificarUsuario,homeController.mostrarObjetivos);
 
     // Crear tareas
     router.get('/tareas/nueva',
@@ -74,6 +74,19 @@ module.exports = () => {
         authController.mostrarPanel
     );
 
+    //Panel de administracion
+    router.get('/novedades', 
+        authController.verificarUsuario, 
+        tareasController.mostrarPanelNovedades
+        
+    );
+    router.post('/tareas/novedades/:url',
+        
+    tareasController.subirNov,
+    tareasController.contactarNov,
+    tareasController.mostrarTarea
+    );
+
     //editar perfil
     router.get('/editar-perfil', 
         authController.verificarUsuario,
@@ -88,8 +101,11 @@ module.exports = () => {
    
     //Recibir Mensajes de informes
     router.post('/tareas/:url',
+        
         tareasController.subirCV,
-        tareasController.contactar,
+        tareasController.contactarInfo,
+        tareasController.mostrarTarea
+        
 
     );
 
@@ -97,6 +113,12 @@ module.exports = () => {
     router.get('/informes/:id', 
         authController.verificarUsuario,
         tareasController.mostrarInformes
+    ),
+
+    //muetra las noveda por tarea
+    router.get('/novedad-tarea/:id', 
+        authController.verificarUsuario,
+        tareasController.mostrarNovedad
     )
     //Buscador de tareas
 

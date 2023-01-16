@@ -40,8 +40,27 @@ exports.mostrarPanel = async (req, res) => {
         imagen: req.user.imagen,
         tareas
     })
-}
 
+
+}
+/*
+exports.mostrarPanelNovedades = async (req, res) => {
+
+    //consultar el usaurio atenticado
+    const tareas = await Tarea.find({autor: req.user._id}).lean();
+
+
+    res.render('novedades', {
+        nombrePagina: 'Panel de Novedades',
+        tagline: 'Controla las novedades, tienes algo pendiente para hoy??',
+        cerrarSesion: true,
+        nombre: req.user.nombre,
+        imagen: req.user.imagen,
+        tareas
+    })
+
+}
+*/
 exports.cerrarSesion = (req, res, next) => {
     req.logout(function(err){
         if(err) {
@@ -79,7 +98,7 @@ exports.enviarToken = async (req, res) => {
 
     //Guardar el usuario
 
-    await usuario.save();
+    await usuario.save()
     const resetUrl = `http://${req.headers.host}/reestablecer-password/${usuario.token}`;
     
     //console.log(resetUrl);
