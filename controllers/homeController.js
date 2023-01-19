@@ -8,10 +8,12 @@ exports.mostrarObjetivos =  async (req, res, next) => {
     if(!tareas) return next();//si no hay tareas nos vamos al siguiente midelwer
 
     res.render('home', {
-        nombrePagina: 'appJobsYpf',
         tagline: 'Todas Tus Tareas Organizadas En Un Solo Lugar',
         barra: 'true',
+        novedad:true,
         cerrarSesion: true,
+        nombre: req.user.nombre,
+        imagen: req.user.imagen,
         boton: 'true',
         tareas
     })

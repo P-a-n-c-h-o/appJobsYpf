@@ -12,47 +12,61 @@
     <title>{{nombrePagina}}</title>
 </head>
 <body>
+    <header>
+        <div class="contenedor">
+            <div class="subcontenedor">
+                <nav class="navbar">
+                    <h1>
+                        <a class="nav-tit" href="/">appJobsYpf</a>
+                    </h1>
+
+
+
+                    {{#if cerrarSesion}}
+                        
+                        <div class="nav-menu">
+                           <!-- <div class="nav-item">
+                                <p class="hola">Hola! {{nombre}}</p>
+                            </div>-->
+                            <div class="nav-item">
+                                {{#if imagen}}
+                                    <img src="/uploads/perfiles/{{imagen}}" class="img-nav">
+                                {{/if}}
+                            </div>
+                           <div class="nav-item">
+                                <a href="/administracion">Administración</a>
+                            </div> 
+                            <div class="nav-item">
+                                {{#if tareas}} 
+                                   <a class="nov" href="/novedades">
+                                        Novedades
+                                    </a>
+                                {{/if}}
+                            </div>
+                            <div class="nav-item">
+                                <a href="/cerrar-sesion">Cerrar Sesión</a>
+                            </div>
+                        </div>
+                       
+                    {{/if}}
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
     
-    <div class="nombre-sitio contenedor">
-        <h1>
-            <a class="active" href="/">appJobsYpf</a>
-        </h1>
-
-        {{#if barra}}
-            <div class="buscador">
-                <form action="/buscador" method="POST">
-                    <input type="text" name="q" class="buscar">
-                    <input type="submit" value="Buscar">
-                </form>
+                    </div>
+                </nav>
             </div>
-        {{/if}}
-
-        {{#if cerrarSesion}}
-            <div class="cerrar-sesion">
-                <p class="hola">Hola! {{nombre}}</p>
-                {{#if imagen}}
-                    <img src="/uploads/perfiles/{{imagen}}" class="admin-perfil">
-                {{/if}}
-                <a href="/administracion">Administración</a>
-
-                
-                
-                {{#if tareas}}
-                        <a class="nov" href="/novedades"> 
-                            {{novedad.length}}Novedades
-                            
-                        </a>
-                {{/if}}                                 
-                
-            
-
-
-                <a href="/cerrar-sesion">Cerrar Sesión</a>
-            </div>
-        {{/if}}
-
-
-    </div>
+            {{#if barra}}
+                <div class="buscador">
+                    <form action="/buscador" method="POST">
+                        <input type="text" name="q" class="buscar">
+                        <input type="submit" value="Buscar">
+                   </form>
+                </div>
+            {{/if}}
+        </div>
+    </header>
 
     <header class="site-header contenedor separador">
         <h2>{{nombrePagina}}</h2>
@@ -77,5 +91,6 @@
     </div>
     <script src="/js/trix.js"></script>
     <script src="/dist/bundle.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html> 

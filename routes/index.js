@@ -123,6 +123,7 @@ module.exports = () => {
     //Buscador de tareas
 
     router.post('/buscador', 
+        authController.verificarUsuario, 
         tareasController.buscarTareas,
         
     );

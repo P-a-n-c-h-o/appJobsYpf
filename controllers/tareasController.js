@@ -461,6 +461,10 @@ exports.buscarTareas = async (req,res) =>{
    res.render('home', {
     nombrePagina: `Resultados para la búsqueda: ${req.body.q}`,
     barra:true,
+    novedad:true,
+    cerrarSesion: true,
+    nombre: req.user.nombre,
+    imagen: req.user.imagen,
     tareas,
    })
 }

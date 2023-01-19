@@ -112,9 +112,10 @@ exports.formEditarPerfil = (req, res) => {
     res.render('editar-perfil', {
         nombrePagina : 'Editar tu perfil en appJobsYpf',
         usuario: req.user.toObject(),
+        novedad:true,
         cerrarSesion: true,
         nombre: req.user.nombre,
-        imagen: req.user.imagen
+        imagen: req.user.imagen,
     })
 }
 
