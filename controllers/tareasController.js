@@ -33,7 +33,7 @@ const configuracionMulter1 = {
     limits : { fileSize : 600000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
-            cb(null, __dirname+'https://res.cloudinary.com/dgw0ea3s6/image/upload/v1674757298');
+            cb(null, __dirname+'../../public/uploads/info');
         }, 
         filename : (req, file, cb) => {
             const extension = file.mimetype.split('/')[1];
