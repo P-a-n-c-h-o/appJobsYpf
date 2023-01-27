@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const bcrypt = require('bcrypt'); // bcrypt para hashear los password
+const path = require('path');
+//const { Schema, model }= require('mongoose');
 
 const usuariosSchema = new mongoose.Schema({      //new mongoose va almecenar siempre con una referencia para todo, para los modelos y par ala conexion, tiene algo que se lleama como singleton  
     email:{
@@ -21,12 +23,16 @@ const usuariosSchema = new mongoose.Schema({      //new mongoose va almecenar si
         trim: true
 
     },
+
+    token: String,
+    expira: Date,
+    
     cloudinary_id:{
         type: String,
     },
-    token: String,
-    expira: Date,
     imagen: String,
+    public_id: String,
+    path: String
 
 
 });

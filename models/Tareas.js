@@ -50,7 +50,7 @@ const tareasSchema =  new mongoose.Schema({
     informes: [{
         nombre: String,
         email: String,
-        cv : String
+        cv : String,
     }],
 
     novedad:[{
@@ -73,7 +73,16 @@ const tareasSchema =  new mongoose.Schema({
        ref: 'Usuarios', 
        required: 'El autor es obligatorio'
     },
+
+    cloudinary_id:{
+        type: String,
+    },
+    
     imagen1:String,
+    imagen2: String,
+    path: String,
+    public_id: String,
+    cv : String,
     
     
 });

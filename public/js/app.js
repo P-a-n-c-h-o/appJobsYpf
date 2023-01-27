@@ -21,16 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         skillsSeleccionados();
     }
 
-    /*if(skills1) {
-        skills1.addEventListener('click', agregarSkills1);
-
-        // una vez que estamos en editar, llamar la funcion
-        skills1Seleccionados();
-    }
-    */
 
     const tareasListado = document.querySelector('.panel-administracion');
-    //const tareasListado =  document.querySelectorAll('.alertas');
 
     if(tareasListado){
         tareasListado.addEventListener('click', accionesListado);
@@ -38,6 +30,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
+/*notificacion 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const novedad = document.querySelector('.campo');
+    //limpiar las alertas
+    let alertas = document.querySelector('.alertas')
+
+    if(alertas){
+        limpiarAlertas();
+    }
+
+    
+    if(novedad) {
+        novedad.addEventListener('click', agregarNovedad);
+
+        // una vez que estamos en editar, llamar la funcion
+        //skillsSeleccionados();
+    }
+
+    //const novedadesListado = document.querySelector('.');
+
+//    if(novedadesListado){
+  //      novedadesListado.addEventListener('click', novedadesListado);
+    //}
+
+})
+
+//const novedad = new Set();
+const agregarNovedad = e => {
+   console.log(e.target)
+} */
 
 const skills = new Set();
 const agregarSkills = e => {
@@ -55,28 +78,15 @@ const agregarSkills = e => {
     const skillsArray = [...skills]
     document.querySelector('#skills').value = skillsArray;
 }
+
+
 const file = document.querySelector("input[type=file]").file
 element.editor.insertFile(file);
 
 const attachment = new Trix.Attachment({ content: '<span class="mention">@trix</span>' })
 element.editor.insertAttachment(attachment);
 
-const skills1 = new Set();
-const agregarSkills1 = e => {
-    if(e.target.tagName === 'LI'){
-        if(e.target.classList.contains('activo')){
-            // quitarlo del set y quitar la clase
-            skills1.delete(e.target.textContent);
-            e.target.classList.remove('activo');
-        } else {
-            // agregarlo al set y agregar la clase
-            skills1.add(e.target.textContent);
-            e.target.classList.add('activo');
-        }
-    } 
-    const skills1Array = [...skills1]
-    document.querySelector('#skills1').value = skills1Array;
-}
+
 
 
 const skillsSeleccionados = () => {
@@ -93,19 +103,7 @@ const skillsSeleccionados = () => {
 
 }
 
-const skills1Seleccionados = () => {
-    const seleccionadas = Array.from(document.querySelectorAll('.lista-conocimientos1 .activo'));
 
-
-    seleccionadas.forEach(seleccionada => {
-        skills1.add(seleccionada.textContent);
-    })
-    
-    //inyectarlo en e hidden
-    const skills1Array = [...skills1]
-    document.querySelector('#skills1').value = skills1Array;
-
-}
 const limpiarAlertas = () => {
     const alertas = document.querySelector('.alertas'); // este es un selector // si no esta esta variable seria indefinida
     const interval = setInterval(() => {
@@ -167,3 +165,4 @@ const accionesListado = e => {
         window.location.href = e.target.href;
     }
 }
+

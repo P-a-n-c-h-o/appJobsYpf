@@ -29,7 +29,7 @@
         <div class="campo">
             {{#if tarea.autor.imagen}}
                 <div class="caja">
-                    <a href="/uploads/info/{{tarea.imagen1}}" class="btn verde-salvaje">
+                    <a href="{{tarea.imagen1}}" class="btn verde-salvaje">
                     
                         Ver Adjunto
                     </a>
@@ -119,7 +119,7 @@
             <p>{{tarea.autor.nombre}}</p>
         {{/if}}
         {{#if tarea.autor.imagen}}
-            <img src="/uploads/perfiles/{{tarea.autor.imagen}}">
+            <img src="{{tarea.autor.imagen}}">
         {{/if}}
     </div>
 

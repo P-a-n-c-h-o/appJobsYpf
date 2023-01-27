@@ -3,6 +3,9 @@ const Usuarios = mongoose.model('Usuarios');
 const {body,validationResult} = require('express-validator');
 const multer = require('multer');
 const shortid = require('shortid');
+const cloudinary = require("../utils/cloudinary");
+const path = require('path');
+const fs = require('fs-extra');
 
 exports.subirImagen = (req, res, next) => {
     upload(req, res, function(error) {
@@ -28,7 +31,7 @@ const configuracionMulter = {
     limits : { fileSize : 6000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
-            cb(null, __dirname+'../../public/uploads/perfiles');
+            cb(null, path.join( __dirname+'../../public/uploads/perfiles'));
         }, 
         filename : (req, file, cb) => {
             const extension = file.mimetype.split('/')[1];
@@ -108,14 +111,15 @@ exports.formIniciarSesion =(req, res) =>{
 }
 
 //form editar  el perfil
-exports.formEditarPerfil = (req, res) => {
+exports.formEditarPerfil = async (req, res) => {
+    const imagen = await Usuarios.find();
     res.render('editar-perfil', {
         nombrePagina : 'Editar tu perfil en appJobsYpf',
         usuario: req.user.toObject(),
         novedad:true,
         cerrarSesion: true,
         nombre: req.user.nombre,
-        imagen: req.user.imagen,
+        imagen: {imagen},
     })
 }
 
@@ -123,17 +127,28 @@ exports.formEditarPerfil = (req, res) => {
 exports.editarPerfil = async (req, res) => {
     const usuario = await Usuarios.findById(req.user._id);
 
+    const result = await cloudinary.uploader.upload(req.file.path, {
+        public_id: `${usuario._id}_profile`,
+        width:500,
+        height:500,
+        crop:`fill`,
+    });
+    
     usuario.nombre = req.body.nombre;
     usuario.email = req.body.email;
+
     if(req.body.password) {
         usuario.password = req.body.password
     }
 
    if(req.file) {
-        usuario.imagen = req.file.filename;
+        usuario.imagen = result.secure_url;
+        usuario.public_id = result.public_id;
+        usuario.path =result.path; 
    }
 
-    await usuario.save();
+    await Usuarios.findByIdAndUpdate(usuario._id, {imagen:result.url});
+    await fs.unlink(req.file.path);
     req.flash('correcto', 'Cambios Guardados Correctamente');
 
     //redirect

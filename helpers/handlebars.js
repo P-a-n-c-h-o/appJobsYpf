@@ -1,8 +1,7 @@
 module.exports = {
     seleccionarSkills: (seleccionados = [], opciones) =>{
         
-        console.log(seleccionados);
-
+ 
         const skills = ['RT', 'UT', 'RX', 'PT', 'MT', 'OG', 'AE', 'VT', 'ET', 'REPLICA', 'DUREZA', 'RELEVAMIENTO', 'ANDAMIOS', 'ASLACION', 'ANDAMOVIL', 'GRUA', 'CORTE DE CALLE','ESPACIO CONFINADO'];
 
         let html = '';
@@ -18,7 +17,6 @@ module.exports = {
 
     seleccionarSkills1: (seleccionados1 = [], opciones) =>{
         
-        console.log(seleccionados1);
 
         const skills1 = ['ANDAMIOS', 'AISLACION', 'ANDAMOVIL'];
 

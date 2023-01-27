@@ -14,9 +14,12 @@ const flash = require ('connect-flash');
 const createError = require('http-errors')
 const passport = require('./config/passport');
 mongoose.set('strictQuery', false);
-
 //require('dotenv').config({ path : 'variablesypf.env'});
 require('dotenv').config({ path : 'variablesAppYpf.env'});
+
+
+
+
 
 const app = express();
 
@@ -42,6 +45,7 @@ app.set('view engine', 'handlebars');
 
 // static files
 app.use(express.static(path.join(__dirname, '/public')));
+
 
 app.use(cookieParser());
 
@@ -125,22 +129,6 @@ app.use(express.json());
 app.use(fileupload({
     useTempFiles : true,
 }))
-
-
-
-
-app.post("/", async (req,res)=> {
-    const file = req.files.image;
-    const result = await cloudinary.uploader.upload(file.tempFilePath, {
-        public_id: `${Date.now()}`,
-        resource_type: "auto",
-        folder: "images"
-    })
-
-    res.json(result.info.secure.url);
-
-})
-
     
 
 app.listen(port, host, ()=>{

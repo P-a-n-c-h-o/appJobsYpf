@@ -3,22 +3,21 @@ const Tarea = mongoose.model('Tarea');
 
 exports.mostrarObjetivos =  async (req, res, next) => {
     
-    const tareas = await Tarea.find().sort( {prioridad:1, inicio:1} ).lean(); //FIND().lean() se encacrga de traernos todos los datos que tengamos en la DB
+    const tareas = await Tarea.find().sort( {prioridad:1, inicio:1}).lean(); //FIND().lean() se encacrga de traernos todos los datos que tengamos en la DB
  
     if(!tareas) return next();//si no hay tareas nos vamos al siguiente midelwer
+    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
 
     res.render('home', {
         tagline: 'Todas Tus Tareas Organizadas En Un Solo Lugar',
         barra: 'true',
-        novedad:true,
-        cerrarSesion: true,
+        cerrarSesion: 'true',
+        novedades,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         boton: 'true',
         tareas
     })
-
-    
 
 }
 /*
@@ -39,7 +38,6 @@ exports.mostrarObjetivos=  async (req, res, next) => {
                 tareas
             })
         }
-        console.log()
     } catch (error) {
 
         const tareas = await Tarea.find().lean(); //FIND().lean() se encacrga de traernos todos los datos que tengamos en la DB

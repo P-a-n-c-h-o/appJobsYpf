@@ -215,8 +215,12 @@ h3 {
     border-radius: 10px;
 }
 .nav-item .nov{
-    color: red;
-}
+    color: rgb(220, 11, 11);
+    width: 25px;
+    height: 25px;
+     justify-content: center;
+    align-items: center;
+ }
 
 .nav-item .hola{
     color: #616065;
@@ -235,7 +239,19 @@ h3 {
     flex: 1;
     position: relative;
 }
+.count-products{
 
+
+    background-color: #000;
+    color: rgb(220, 11, 11);
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
 @media (max-width:1600px){
     .contenedor{
         width: 100%;
@@ -288,6 +304,9 @@ h3 {
     }
     .nav-item{
         margin: 8px;
+    }
+    .count-products{
+        margin: 2px; 
     }
     .nav-menu.active{
         left: 0px;
@@ -548,6 +567,7 @@ h3 {
     padding-top: 50px;
     line-height: 1.4;
 }
+
 
 .centrar-vertical{
     display: flex;

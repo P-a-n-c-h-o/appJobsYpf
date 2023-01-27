@@ -30,19 +30,27 @@
                             </div>-->
                             <div class="nav-item">
                                 {{#if imagen}}
-                                    <img src="/uploads/perfiles/{{imagen}}" class="img-nav">
+                                    <img src="{{imagen}}" class="img-nav">
                                 {{/if}}
                             </div>
                            <div class="nav-item">
                                 <a href="/administracion">Administración</a>
-                            </div> 
-                            <div class="nav-item">
-                                {{#if tareas}} 
-                                   <a class="nov" href="/novedades">
-                                        Novedades
-                                    </a>
-                                {{/if}}
                             </div>
+
+                           <!-- <div class="count-products">
+					            <span id="contador-productos">0</span>
+					        </div>-->
+                           
+                            <div class="nav-item">
+                                {{#if novedades}} <!-- si existe un informe-->
+                                    {{#if tareas}} 
+                                        <a class="nov" href="/novedades" id="Novedades">
+                                          {{novedades.length}}Novedades
+                                        </a>
+                                    {{/if}} 
+                                {{/if}}
+                            </div> 
+
                             <div class="nav-item">
                                 <a href="/cerrar-sesion">Cerrar Sesión</a>
                             </div>
@@ -92,5 +100,6 @@
     <script src="/js/trix.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/js/script.js"></script>
+ 
 </body>
 </html> 

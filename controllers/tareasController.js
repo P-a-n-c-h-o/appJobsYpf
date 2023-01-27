@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Tarea = mongoose.model('Tarea');
-
+const cloudinary = require("../utils/cloudinary");
 const { body, validationResult } = require("express-validator");
 //const Tarea =('../models/Tareas.js')
 const multer = require('multer');
 const shortid = require('shortid');
-
+const fs = require('fs-extra');
 //subir imagen en tares
 
-exports.subirImagen1 = (req, res, next) => {
+exports.subirImagen1 = async (req, res, next) => {
     upload1(req, res, function(error) {
         if(error) {
             if(error instanceof multer.MulterError) {
@@ -52,14 +52,16 @@ const configuracionMulter1 = {
 
 const upload1 = multer(configuracionMulter1).single('imagen1');
 
-exports.formularioNuevaTarea = (req, res) => {
+exports.formularioNuevaTarea = async (req, res) => {
+    const imagen1 = await Tarea.find();
+
     res.render('nueva-tarea', {
         nombrePagina: 'Nueva Tarea',
         tagline: 'Llena el formulario para publicar una nueva tarea',
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        imagen1: req.user.imagen1
+        imagen1: {imagen1}
     })
     
 }
@@ -68,23 +70,27 @@ exports.formularioNuevaTarea = (req, res) => {
 exports.agregarTarea = async (req, res) => {
    const tarea = new Tarea(req.body);
 
-   //usuario autor de la tarea
+    const result = await cloudinary.uploader.upload(req.file.path)
+   
+    //usuario autor de la tarea 
    tarea.autor = req.user._id;
 
     //crear arreglo de habilidades (skills)
     tarea.skills= req.body.skills.split(',');
 
-   //console.log(tarea)
-   if(req.body.password) {
+    if(req.body.password) {
     usuario.password = req.body.password
     }
 
     if(req.file) {
-        tarea.imagen1 = req.file.filename;
+
+        tarea.imagen1 = result.secure_url;
+        tarea.public_id = result.public_id;
+        tarea.path = result.path
     }
     // almacenar en la base de datos
    const nuevaTarea = await tarea.save();
-
+   await fs.unlink(req.file.path);
     //redireccionar
    res.redirect(`/tareas/${nuevaTarea.url}`);
 }
@@ -94,11 +100,11 @@ exports.agregarTarea = async (req, res) => {
 // mustra una tarea
 exports.mostrarTarea = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url}).populate('autor').lean();
-     //console.log(tarea);
-
 
     //si no hay resuktados
     if(!tarea) return next();
+    
+
 
     res.render('tarea', {
        
@@ -112,7 +118,7 @@ exports.mostrarTarea = async (req, res, next) => {
 
 exports.formEditarTarea = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url}).lean();
-
+    const imagen1 = await Tarea.find();
     if(!tarea) return next();
 
     res.render('editar-tarea',{
@@ -121,7 +127,7 @@ exports.formEditarTarea = async (req, res, next) => {
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        imagen1: req.user.imagen1
+        imagen1: {imagen1}
          
     })
 }
@@ -129,6 +135,8 @@ exports.formEditarTarea = async (req, res, next) => {
 exports.editarTarea = async (req, res) => {
     const tareaActualizada = req.body;
 
+    const result = await cloudinary.uploader.upload(req.file.path)
+    
     tareaActualizada.skills = req.body.skills.split(',');
    
     if(req.body.password) {
@@ -136,18 +144,18 @@ exports.editarTarea = async (req, res) => {
     }
     
     if(req.file) {
-        tareaActualizada.imagen1 = req.file.filename;
+        tareaActualizada.imagen1 = result.secure_url;
     }
 
 
     const tarea = await Tarea.findOneAndUpdate({url: req.params.url}, tareaActualizada, {
         new:true,
         runValidators: true,
-        imagen1: req.user.imagen1
+        imagen1: result.secure_url
     }) ;
 
     //const tarea = await tarea.save();
-
+    await fs.unlink(req.file.path);
     res.redirect(`/tareas/${tarea.url}`);
 
  
@@ -203,7 +211,6 @@ exports.eliminarTarea = async (req, res) => {
         res.status(403).send('Error')
     }
 
-    //console.log(tarea);
 
     
 }
@@ -314,40 +321,44 @@ const upload2 = multer(configuracionMulter2).single('nove');
 //almacenar informes 
 
 exports.contactarInfo = async (req, res, next) => {
-
-
     
+
     const tarea = await Tarea.findOne({url: req.params.url});
+
+    const result = await cloudinary.uploader.upload(req.file.path)
 
     //sino existe la vacante 
     if(!tarea) return next();
 
     //todo bien, construir el nuevo objeto
     const nuevoInforme = {
+        
         nombre: req.body.nombre,
         email: req.body.email,
-        cv: req.file.filename,
-        
+        cv: result.secure_url,
     }
+    
     //almacenar la vacante
     tarea.informes.push(nuevoInforme);
     await tarea.save();
+    await fs.unlink(req.file.path);
 
     //mensaje flash y redireccion
     req.flash('correcto', 'Se envió tu Informe Correctamente');
     res.redirect(`/tareas/${tarea.url}`)
     
-
+    
 }
 
 //almacenar novedades
 
 exports.contactarNov = async (req, res, next) => {
+   // let totalNovedades = 0
 
-    
     const tarea = await Tarea.findOne({url: req.params.url});
 
-    //console.log(tarea)
+    const result = await cloudinary.uploader.upload(req.file.path)
+
 
     //sino existe la vacante 
     if(!tarea) return next();
@@ -357,20 +368,21 @@ exports.contactarNov = async (req, res, next) => {
         nombre: req.body.nombre,
         email: req.body.email,
         descripNov: req.body.descripNov,
-        nove: req.file.filename,
+        nove: result.secure_url 
     }
+
+ 
     //almacenar la vacante
     tarea.novedad.push(nuevaNovedad);
     await tarea.save();
+    await fs.unlink(req.file.path);
+
     
-    //console.log(tarea)
     //mensaje flash y redireccion
     req.flash('correcto', 'Se envió tu Novedad Correctamente');
     res.redirect(`/tareas/${tarea.url}`)
-  
 
 }
-
 /*
 exports.mostrarPanelNovedades = async (req, res) => {
 
@@ -394,7 +406,7 @@ exports.mostrarPanelNovedades = async (req, res) => {
     //consultar el usaurio atenticado
     const tareas = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
 
-       
+   
         return res.render('novedades', {
             nombrePagina: 'Panel de Novedades',
             tagline: 'Controla las novedades, tienes algo pendiente para hoy??',
@@ -403,26 +415,26 @@ exports.mostrarPanelNovedades = async (req, res) => {
             imagen: req.user.imagen,
             tareas
         })
+
 }
 
 
 
 exports.mostrarInformes = async (req, res, next) => {
     const tarea = await Tarea.findById(req.params.id).lean();
-
     //validacion de autor
     if(tarea.autor != req.user._id.toString()){
         return next();
     } 
 
+    
     if(!tarea) return next();
-
     res.render('informes', {
         nombrePagina: `Informes Tarea - ${tarea.planta}`,
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        informes: tarea.informes
+        informes: tarea.informes,
     })
 }
 
