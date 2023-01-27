@@ -33,7 +33,7 @@ const configuracionMulter1 = {
     limits : { fileSize : 600000000 },
     storage: fileStorage = multer.diskStorage({
         destination : (req, file, cb) => {
-            cb(null, __dirname+'../../public/uploads/info');
+            cb(null, __dirname+'https://res.cloudinary.com/dgw0ea3s6/image/upload/v1674757298');
         }, 
         filename : (req, file, cb) => {
             const extension = file.mimetype.split('/')[1];
@@ -365,7 +365,7 @@ exports.contactarNov = async (req, res, next) => {
 
     //todo bien, construir el nuevo objeto
     const nuevaNovedad = {
-        nombre: req.body.nombre,
+         nombre: req.body.nombre,
         email: req.body.email,
         descripNov: req.body.descripNov,
         nove: result.secure_url 
