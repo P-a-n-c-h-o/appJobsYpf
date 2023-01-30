@@ -21,6 +21,7 @@
     "@handlebars/allow-prototype-access": "^1.0.5",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
+    "build": "^0.1.4",
     "cloudinary": "^1.33.0",
     "concurrently": "^7.3.0",
     "connect": "^3.7.0",
