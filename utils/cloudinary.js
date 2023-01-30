@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary').v2
+import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
     cloud_name: process.env.CLAUDINARY_USER,
@@ -8,4 +8,4 @@ cloudinary.config({
     api_preset:process.env.UPLOAD_PRESET
 });
 
-module.exports= cloudinary;
+export default cloudinary;
