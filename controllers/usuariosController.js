@@ -138,7 +138,7 @@ exports.editarPerfil = async (req, res) => {
     
     usuario.nombre = req.body.nombre;
     usuario.email = req.body.email;
-    usuario.imagen= req.user.imagen;
+    
 
     if(req.body.password) {
         usuario.password = req.body.password

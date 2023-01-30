@@ -72,8 +72,6 @@ exports.agregarTarea = async (req, res) => {
 
     const result = await cloudinary.uploader.upload(req.file.path, {
         public_id: `${usuario._id}_profile`,
-        width:500,
-        height:500,
         crop:`fill`,
         folder:"Tareas"
     });
@@ -141,7 +139,11 @@ exports.formEditarTarea = async (req, res, next) => {
 exports.editarTarea = async (req, res) => {
     const tareaActualizada = req.body;
 
-    const result = await cloudinary.uploader.upload(req.file.path)
+    const result = await cloudinary.uploader.upload(req.file.path, {
+        public_id: `${usuario._id}_profile`,
+        crop:`fill`,
+        folder:"Tareas"
+    });
     
     tareaActualizada.skills = req.body.skills.split(',');
    
@@ -193,6 +195,7 @@ exports.validarTarea = async (req, res, next) => {
             tagline: 'Llena el formulario para publicar una nueva tarea',
             cerrarSesion: true,
             nombre: req.user.nombre,
+            imagen: req.user.imagen,
             mensajes: req.flash()
         })
        // return;
@@ -331,7 +334,11 @@ exports.contactarInfo = async (req, res, next) => {
 
     const tarea = await Tarea.findOne({url: req.params.url});
 
-    const result = await cloudinary.uploader.upload(req.file.path)
+    const result = await cloudinary.uploader.upload(req.file.path, {
+        public_id: `${usuario._id}_profile`,
+        crop:`fill`,
+        folder:"informes"
+    })
 
     //sino existe la vacante 
     if(!tarea) return next();
@@ -363,7 +370,13 @@ exports.contactarNov = async (req, res, next) => {
 
     const tarea = await Tarea.findOne({url: req.params.url});
 
-    const result = await cloudinary.uploader.upload(req.file.path)
+    const result = await cloudinary.uploader.upload(req.file.path, {
+        public_id: `${usuario._id}_profile`,
+        width:500,
+        height:500,
+        crop:`fill`,
+        folder:"Novedades"
+    })
 
 
     //sino existe la vacante 
