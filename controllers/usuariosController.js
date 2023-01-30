@@ -119,6 +119,7 @@ exports.formEditarPerfil = async (req, res) => {
         novedad:true,
         cerrarSesion: true,
         nombre: req.user.nombre,
+        imagen: req.user.imagen,
         imagen: {imagen},
     })
 }
