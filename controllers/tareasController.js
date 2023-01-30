@@ -71,8 +71,6 @@ exports.agregarTarea = async (req, res) => {
    const tarea = new Tarea(req.body);
 
     const result = await cloudinary.uploader.upload(req.file.path, {
-        public_id: `${usuario._id}_profile`,
-        crop:`fill`,
         folder:"Tareas"
     });
    
