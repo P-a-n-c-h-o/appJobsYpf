@@ -90,7 +90,7 @@ exports.agregarTarea = async (req, res) => {
     }
     // almacenar en la base de datos
    const nuevaTarea = await tarea.save();
-   await fs.unlink(req.file.path);
+   //await fs.unlink(req.file.path);
     //redireccionar
    res.redirect(`/tareas/${nuevaTarea.url}`);
 }
@@ -155,7 +155,7 @@ exports.editarTarea = async (req, res) => {
     }) ;
 
     //const tarea = await tarea.save();
-    await fs.unlink(req.file.path);
+    //await fs.unlink(req.file.path);
     res.redirect(`/tareas/${tarea.url}`);
 
  
@@ -341,7 +341,7 @@ exports.contactarInfo = async (req, res, next) => {
     //almacenar la vacante
     tarea.informes.push(nuevoInforme);
     await tarea.save();
-    await fs.unlink(req.file.path);
+    //await fs.unlink(req.file.path);
 
     //mensaje flash y redireccion
     req.flash('correcto', 'Se envió tu Informe Correctamente');
@@ -375,7 +375,7 @@ exports.contactarNov = async (req, res, next) => {
     //almacenar la vacante
     tarea.novedad.push(nuevaNovedad);
     await tarea.save();
-    await fs.unlink(req.file.path);
+    //await fs.unlink(req.file.path);
 
     
     //mensaje flash y redireccion
