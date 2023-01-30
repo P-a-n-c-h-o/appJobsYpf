@@ -70,7 +70,11 @@ exports.formularioNuevaTarea = async (req, res) => {
 exports.agregarTarea = async (req, res) => {
    const tarea = new Tarea(req.body);
 
-    const result = await cloudinary.uploader.upload(req.file.path)
+    const result = await cloudinary.uploader.upload(req.file.path,{
+        public_id:`${Date.now()}`,
+        resource_type:"auto",
+        folder:"info"
+    })
    
     //usuario autor de la tarea 
    tarea.autor = req.user._id;
