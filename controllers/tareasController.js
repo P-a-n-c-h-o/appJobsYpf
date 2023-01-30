@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Tarea = mongoose.model('Tarea');
-const cloudinary = require("../utils/cloudinary").default;
+const cloudinary = require("../utils/cloudinary");
 const { body, validationResult } = require("express-validator");
 //const Tarea =('../models/Tareas.js')
 const multer = require('multer');
@@ -70,11 +70,7 @@ exports.formularioNuevaTarea = async (req, res) => {
 exports.agregarTarea = async (req, res) => {
    const tarea = new Tarea(req.body);
 
-    const result = await cloudinary.uploader.upload(req.file.path,{
-        public_id:`${Date.now()}`,
-        resource_type:"auto",
-        folder:"info"
-    })
+    const result = await cloudinary.uploader.upload(req.file.path)
    
     //usuario autor de la tarea 
    tarea.autor = req.user._id;
@@ -94,7 +90,7 @@ exports.agregarTarea = async (req, res) => {
     }
     // almacenar en la base de datos
    const nuevaTarea = await tarea.save();
-   //await fs.unlink(req.file.path);
+   await fs.unlink(req.file.path);
     //redireccionar
    res.redirect(`/tareas/${nuevaTarea.url}`);
 }
@@ -159,7 +155,7 @@ exports.editarTarea = async (req, res) => {
     }) ;
 
     //const tarea = await tarea.save();
-    //await fs.unlink(req.file.path);
+    await fs.unlink(req.file.path);
     res.redirect(`/tareas/${tarea.url}`);
 
  
@@ -345,7 +341,7 @@ exports.contactarInfo = async (req, res, next) => {
     //almacenar la vacante
     tarea.informes.push(nuevoInforme);
     await tarea.save();
-    //await fs.unlink(req.file.path);
+    await fs.unlink(req.file.path);
 
     //mensaje flash y redireccion
     req.flash('correcto', 'Se envió tu Informe Correctamente');
@@ -379,7 +375,7 @@ exports.contactarNov = async (req, res, next) => {
     //almacenar la vacante
     tarea.novedad.push(nuevaNovedad);
     await tarea.save();
-    //await fs.unlink(req.file.path);
+    await fs.unlink(req.file.path);
 
     
     //mensaje flash y redireccion
