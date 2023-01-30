@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Tarea = mongoose.model('Tarea');
-const cloudinary = require("../utils/cloudinary").default;
+const cloudinary = require("../Utils/cloudinary").default;
 const { body, validationResult } = require("express-validator");
 //const Tarea =('../models/Tareas.js')
 const multer = require('multer');
