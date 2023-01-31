@@ -88,6 +88,12 @@ module.exports = () => {
     tareasController.mostrarTarea
     );
 
+    //muetra las noveda por tarea
+    router.get('/novedad-tarea/:id', 
+        authController.verificarUsuario,
+        tareasController.mostrarNovedad
+    )
+
     //informes
     
     router.get('/informe', 
@@ -95,8 +101,18 @@ module.exports = () => {
         tareasController.mostrarPanelInformes
         
     );
+    
+    //Recibir Mensajes de informes
+    router.post('/tareas/informe/:url',
+        
+        tareasController.subirCV,
+        tareasController.contactarInfo,
+        tareasController.mostrarTarea
+        
 
-    router.get('/informe/:id', 
+    );
+
+    router.get('/informes/:id', 
     authController.verificarUsuario,
     tareasController.mostrarInformes
 )
@@ -114,23 +130,11 @@ module.exports = () => {
         usuariosController.editarPerfil
     )
    
-    //Recibir Mensajes de informes
-    router.post('/tareas/:url',
-        
-        tareasController.subirCV,
-        tareasController.contactarInfo,
-        tareasController.mostrarTarea
-        
-
-    );
 
 
 
-    //muetra las noveda por tarea
-    router.get('/novedad-tarea/:id', 
-        authController.verificarUsuario,
-        tareasController.mostrarNovedad
-    )
+
+
     //Buscador de tareas
 
     router.post('/buscador', 
