@@ -43,7 +43,7 @@
                            
                             <div class="nav-item">
                                 {{#if novedades}} <!-- si existe un informe-->
-                                    {{#each tareas}}
+                                    {{#each novedades}}
                                         <a class="nov" href="/novedades" id="Novedades">
                                           {{novedad.length}}Novedades
                                         </a>
@@ -53,9 +53,9 @@
 
                             <div class="nav-item">
                                 {{#if informes}} <!-- si existe un informe-->
-                                    {{#each tareas}} 
+                                    {{#each informes}} 
                                         <a class="nov" href="/informes" id="Novedades">
-                                          {{informes.length}}informes
+                                          {{informes.length}}Informes
                                         </a>
                                     {{/each}} 
                                 {{/if}}

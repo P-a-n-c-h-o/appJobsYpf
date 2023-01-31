@@ -54,7 +54,7 @@ const upload1 = multer(configuracionMulter1).single('imagen1');
 
 exports.formularioNuevaTarea = async (req, res) => {
     const imagen1 = await Tarea.find();
-    const informes = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean();
+    const informe = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean();
     const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     res.render('nueva-tarea', {
         nombrePagina: 'Nueva Tarea',
@@ -63,7 +63,7 @@ exports.formularioNuevaTarea = async (req, res) => {
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         imagen1: {imagen1},
-        informes,
+        informe,
         novedades
     })
     
@@ -105,7 +105,7 @@ exports.agregarTarea = async (req, res) => {
 // mustra una tarea
 exports.mostrarTarea = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url}).populate('autor').lean();
-    const informes = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+    const informe = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     //si no hay resuktados
     if(!tarea) return next();
     
@@ -118,7 +118,7 @@ exports.mostrarTarea = async (req, res, next) => {
         cerrarSesion: true,
         imagen: req.user.imagen,
         novedad: tarea.novedad,
-        informes
+        informe
        // nombre: req.user.nombre,
        // imagen: req.user.imagen,
     })
@@ -127,7 +127,7 @@ exports.mostrarTarea = async (req, res, next) => {
 exports.formEditarTarea = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url}).lean();
     const imagen1 = await Tarea.find();
-    const informes = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+    const informe= await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     if(!tarea) return next();
 
@@ -138,7 +138,7 @@ exports.formEditarTarea = async (req, res, next) => {
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         imagen1: {imagen1},
-        informes,
+        informe,
         novedades
          
     })
@@ -463,8 +463,9 @@ exports.mostrarPanelInformes = async (req, res) => {
 
 
 exports.mostrarInformes = async (req, res, next) => {
+    //const tarea = await Tarea.find().lean();
+    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     const tarea = await Tarea.findById(req.params.id).lean();
-    const novedades = await Tarea.find( { autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     //validacion de autor
     if(tarea.autor != req.user._id.toString()){
         return next();
@@ -484,7 +485,7 @@ exports.mostrarInformes = async (req, res, next) => {
 
 exports.mostrarNovedad = async (req, res, next) => {
     const tarea = await Tarea.findById(req.params.id).lean();
-    const informes = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+    const informe = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     //validacion de autor
     if(tarea.autor != req.user._id.toString()){
         return next();
@@ -498,7 +499,7 @@ exports.mostrarNovedad = async (req, res, next) => {
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         novedad: tarea.novedad,
-        informes
+        informe
     })
 }
 

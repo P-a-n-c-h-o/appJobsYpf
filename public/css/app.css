@@ -1,6 +1,6 @@
 html {
     box-sizing: border-box;
-    font-size: 62.5%; 
+    font-size: 52.5%; 
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -8,7 +8,7 @@ html {
 body {
     background-color: #100E17;
     font-family: 'Rubik', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     position: relative;
     height: 100vh;
 }
@@ -22,7 +22,7 @@ h1, h2, h3  {
 }
 h1 {
     font-weight: 900;
-    font-size: 6rem;
+    font-size: 5rem;
 }
 h2 {
     padding-top: 20px;
@@ -42,7 +42,7 @@ h3 {
 .separador {
     padding-bottom: 2rem;
     padding-top:2rem;
-    border-bottom: 1px solid #272727;
+    border-bottom: 2px solid #272727;
 }
 
 /** Botones **/
@@ -175,15 +175,14 @@ h3 {
 }
 
 .nav-tit{
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 .img-nav {
-    margin-top:  30px;;
-    width: 100px;
-    align-self: flex-start;
-    border-radius: 90%;
-    align-items: center;
+    margin-top:  30px;
+    margin-left: 40px;
+    width: 90px;
+    border-radius: 10%;
 }
 
 .hamburger{
@@ -377,11 +376,12 @@ h3 {
 }
 .tarea {
     padding: 3rem 0;
-    border-bottom: 1px solid #272727;
+    border-bottom: 2px solid #272727;
 }
 .informe,
 .tarea:last-of-type{
     border:none;
+    border-bottom: 2px solid #272727;
 }
 .caja {
     padding: .5rem 0;
@@ -515,10 +515,12 @@ h3 {
     align-items: center;
     justify-content: space-around;
     text-overflow: clip;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
+    border-bottom: 2px solid #272727;
 }
+
 .novedades .cajass .nombre{
     padding-top: 10px;
     font-size: 2.4rem; 
@@ -592,12 +594,15 @@ h3 {
     .contenido-superior {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
     .contenido-superior .nombre{
         text-align: center;
     }
+    .caja .puesto, .caja .etiqueta {
 
+        text-align: center;
+    }
 
 
 }
