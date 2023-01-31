@@ -333,8 +333,6 @@ exports.contactarInfo = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url});
 
     const result = await cloudinary.uploader.upload(req.file.path, {
-        public_id: `${usuario._id}_profile`,
-        crop:`fill`,
         folder:"informes"
     })
 
@@ -369,10 +367,6 @@ exports.contactarNov = async (req, res, next) => {
     const tarea = await Tarea.findOne({url: req.params.url});
 
     const result = await cloudinary.uploader.upload(req.file.path, {
-        public_id: `${usuario._id}_profile`,
-        width:500,
-        height:500,
-        crop:`fill`,
         folder:"Novedades"
     })
 
