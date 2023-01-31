@@ -52,6 +52,16 @@
                             </div> 
 
                             <div class="nav-item">
+                                {{#if informes}} <!-- si existe un informe-->
+                                    {{#if tareas}} 
+                                        <a class="nov" href="/novedades" id="Novedades">
+                                          {{informes.length}}informes
+                                        </a>
+                                    {{/if}} 
+                                {{/if}}
+                            </div> 
+
+                            <div class="nav-item">
                                 <a href="/cerrar-sesion">Cerrar Sesión</a>
                             </div>
                         </div>
