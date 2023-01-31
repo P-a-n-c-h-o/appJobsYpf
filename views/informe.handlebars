@@ -1,0 +1,26 @@
+<main class="lista-tareas"> 
+    <h2>Tus Informes</h2>
+    <div class="panel-administracion">
+        {{#if tareas}}
+            {{#each tareas}}
+                <div class="tarea">
+                    <div class="caja">
+                        <h3>{{empresa}}</h3>
+                        <p class="puesto">{{planta}}</p>
+                        <p class="informes">
+                            {{informes.length}} novedad(s)
+                        </p>
+                    </div>
+                    <div class="centrar-vertical caja">
+                        <a href="/informes/{{_id}}" class="btn btn-amarillo">Informe</a>
+                    </div>
+                    <div class="centrar-vertical caja">
+                        <a href="/tareas/editar/{{url}}" class="btn btn-verde">Editar Tarea</a>
+                    </div>
+
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No Hay informes, revisa las tareas pendientes</p>
+        {{/if}}
+    </div>
