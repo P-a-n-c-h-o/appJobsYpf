@@ -441,6 +441,25 @@ exports.mostrarPanelNovedades = async (req, res) => {
 
 }
 
+exports.mostrarPanelInformes = async (req, res) => {
+
+    //consultar el usaurio atenticado
+    const tareas = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+
+    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+
+        return res.render('informes', {
+            nombrePagina: 'Panel de Informes',
+            tagline: 'Controla los informes, tienes algo pendiente para hoy??',
+            cerrarSesion: true,
+            nombre: req.user.nombre,
+            imagen: req.user.imagen,
+            tareas,
+            novedades
+        })
+
+}
+
 
 
 exports.mostrarInformes = async (req, res, next) => {

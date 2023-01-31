@@ -75,6 +75,7 @@ module.exports = () => {
     );
 
     //Panel de administracion
+    //novedades
     router.get('/novedades', 
         authController.verificarUsuario, 
         tareasController.mostrarPanelNovedades
@@ -86,6 +87,21 @@ module.exports = () => {
     tareasController.contactarNov,
     tareasController.mostrarTarea
     );
+
+    //informes
+    
+    router.get('/informe', 
+        authController.verificarUsuario, 
+        tareasController.mostrarPanelInformes
+        
+    );
+    router.post('/tareas/novedades/:url',
+        
+    tareasController.subirNov,
+    tareasController.contactarNov,
+    tareasController.mostrarTarea
+    );
+
 
     //editar perfil
     router.get('/editar-perfil', 
@@ -109,11 +125,7 @@ module.exports = () => {
 
     );
 
-    //muetra los informes por tarea
-    router.get('/informes/:id', 
-        authController.verificarUsuario,
-        tareasController.mostrarInformes
-    ),
+
 
     //muetra las noveda por tarea
     router.get('/novedad-tarea/:id', 
