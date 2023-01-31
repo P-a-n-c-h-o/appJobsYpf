@@ -31,12 +31,13 @@ exports.mostrarPanel = async (req, res) => {
     //consultar el usaurio atenticado
     const tareas = await Tarea.find({autor: req.user._id}).lean();
     //const tarea = await Tarea.findById(req.params.id).lean();
+    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
 
     res.render('administracion', {
         nombrePagina: 'Panel de Administración',
         tagline: 'Crea y Administra tus tareas desde aquí',
         cerrarSesion: true,
-        //novedad: tarea.novedad,
+        novedades,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         tareas
