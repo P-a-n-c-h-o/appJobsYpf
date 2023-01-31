@@ -113,6 +113,8 @@ exports.mostrarTarea = async (req, res, next) => {
         nombrePagina:  tarea.planta,
         tarea,
         cerrarSesion: true,
+        imagen: req.user.imagen,
+        novedad: tarea.novedad
        // nombre: req.user.nombre,
        // imagen: req.user.imagen,
     })
@@ -376,7 +378,7 @@ exports.contactarNov = async (req, res, next) => {
 
     //todo bien, construir el nuevo objeto
     const nuevaNovedad = {
-         nombre: req.body.nombre,
+        nombre: req.body.nombre,
         email: req.body.email,
         descripNov: req.body.descripNov,
         nove: result.secure_url 

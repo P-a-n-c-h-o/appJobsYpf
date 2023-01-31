@@ -36,6 +36,7 @@ exports.mostrarPanel = async (req, res) => {
         nombrePagina: 'Panel de Administración',
         tagline: 'Crea y Administra tus tareas desde aquí',
         cerrarSesion: true,
+        novedad: tareas.novedad,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         tareas

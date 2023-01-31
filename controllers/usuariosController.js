@@ -112,7 +112,7 @@ exports.formIniciarSesion =(req, res) =>{
 
 //form editar  el perfil
 exports.formEditarPerfil = async (req, res) => {
-    const imagen = await Usuarios.find();
+    //const imagen = await Usuarios.find();
     res.render('editar-perfil', {
         nombrePagina : 'Editar tu perfil en appJobsYpf',
         usuario: req.user.toObject(),
@@ -120,7 +120,7 @@ exports.formEditarPerfil = async (req, res) => {
         cerrarSesion: true,
         nombre: req.user.nombre,
         imagen: req.user.imagen,
-        imagen: {imagen},
+        //imagen: {imagen},
     })
 }
 
