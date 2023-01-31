@@ -81,7 +81,7 @@ module.exports = () => {
         tareasController.mostrarPanelNovedades
         
     );
-    router.post('/tareas/novedades/:url',
+    router.post('/tareas/:url',
         
     tareasController.subirNov,
     tareasController.contactarNov,
