@@ -95,12 +95,11 @@ module.exports = () => {
         tareasController.mostrarPanelInformes
         
     );
-    router.post('/tareas/novedades/:url',
-        
-    tareasController.subirNov,
-    tareasController.contactarNov,
-    tareasController.mostrarTarea
-    );
+
+    router.get('/informe/:id', 
+    authController.verificarUsuario,
+    tareasController.mostrarInformes
+)
 
 
     //editar perfil

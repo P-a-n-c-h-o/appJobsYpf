@@ -1,5 +1,5 @@
 <main class="lista-tareas"> 
-    <h2>Tus Informes</h2>
+    <h2>Tus Novedades</h2>
     <div class="panel-administracion">
         {{#if tareas}}
             {{#each tareas}}
@@ -12,7 +12,7 @@
                         </p>
                     </div>
                     <div class="centrar-vertical caja">
-                        <a href="/informes/{{_id}}" class="btn btn-amarillo">Informe</a>
+                        <a href="/novedad-tarea/{{_id}}" class="btn btn-amarillo">Novedad</a>
                     </div>
                     <div class="centrar-vertical caja">
                         <a href="/tareas/editar/{{url}}" class="btn btn-verde">Editar Tarea</a>
@@ -21,6 +21,6 @@
                 </div>
             {{/each}}
         {{else}}
-            <p>No Hay informes, revisa las tareas pendientes</p>
+            <p>No Hay novedades, revisa las tareas pendientes</p>
         {{/if}}
     </div>
