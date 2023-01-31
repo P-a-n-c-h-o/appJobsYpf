@@ -464,7 +464,7 @@ exports.mostrarPanelInformes = async (req, res) => {
 
 exports.mostrarInformes = async (req, res, next) => {
     const tarea = await Tarea.findById(req.params.id).lean();
-    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+    const novedades = await Tarea.find( { autor: req.user._id, __v: { $gt: 0 } }).lean(); 
     //validacion de autor
     if(tarea.autor != req.user._id.toString()){
         return next();
@@ -472,7 +472,7 @@ exports.mostrarInformes = async (req, res, next) => {
 
     
     if(!tarea) return next();
-    res.render('informes', {
+    res.render('informe', {
         nombrePagina: `Informes Tarea - ${tarea.planta}`,
         cerrarSesion: true,
         nombre: req.user.nombre,

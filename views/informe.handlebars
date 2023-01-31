@@ -1,26 +1,27 @@
-<main class="lista-tareas"> 
-    <h2>Tus Novedades</h2>
-    <div class="panel-administracion">
-        {{#if tareas}}
-            {{#each tareas}}
-                <div class="tarea">
-                    <div class="caja">
-                        <h3>{{empresa}}</h3>
-                        <p class="puesto">{{planta}}</p>
-                        <p class="informes">
-                            {{informes.length}} novedad(s)
-                        </p>
-                    </div>
-                    <div class="centrar-vertical caja">
-                        <a href="/novedad-tarea/{{_id}}" class="btn btn-amarillo">Novedad</a>
-                    </div>
-                    <div class="centrar-vertical caja">
-                        <a href="/tareas/editar/{{url}}" class="btn btn-verde">Editar Tarea</a>
-                    </div>
-
+<main class="lista-informes">
+    <h2>Lista de Informes</h2
+    {{#if informes.length}} <!-- si existe un informe-->
+        {{#each informes}}
+            <div class="novedades">
+                <div class="cajass">
+                    <p class="etiqueta">Nombre:</p>
+                    <p class="nombre">{{nombre}}</p>
                 </div>
-            {{/each}}
-        {{else}}
-            <p>No Hay novedades, revisa las tareas pendientes</p>
-        {{/if}}
-    </div>
+                <div class="cajass">
+                    <p class="etiqueta">E-mail</p>
+                    <p class="nombre">{{email}}</p>
+                </div>
+                <div class="cajass1">
+                    <a href="{{cv}}" class="verdess">
+                    
+                        Ver Informe
+                    </a>
+                </div>
+            </div>
+
+        {{/each}}
+    {{else}}
+        <p>No hay novedades aún</p>
+
+    {{/if}}
+</main>

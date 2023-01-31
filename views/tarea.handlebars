@@ -56,7 +56,7 @@
         <h2>Contactar Inspector</h2>
         <p>Llena el siguiente formulaio, sube tu informe y pronto te contactará</p>
 
-        <form  action="/tareas/{{tarea.url}}" method="POST" class="default-form" enctype="multipart/form-data">
+        <form  action="/tareas/informes/{{tarea.url}}" method="POST" class="default-form" enctype="multipart/form-data">
             <div class="campo">
                 <label>Nombre</label>
                 <input type="text" name="nombre" placeholder="Tu Nombre">
@@ -68,7 +68,7 @@
                 
             <div class="campo">
                 <label>informe (PDF/JPG)</label>
-                <input type="file" name="cv">
+                <input type="file" id="informes" name="cv">
             </div>
 
             <div class="campo">

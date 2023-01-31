@@ -1,5 +1,5 @@
 <main class="lista-informes">
-    <h2>Lista de Informes</h2
+    <h2>Lista de  Novedades</h2
     {{#if novedad.length}} <!-- si existe un informe-->
         {{#each novedad}}
             <div class="novedades">
@@ -12,7 +12,7 @@
                     <p class="nombre">{{email}}</p>
                 </div>
                 <div class="cajass1">
-                    <a href="/uploads/nov/{{nove}}" class="verdess">
+                    <a href="{{nove}}" class="verdess">
                     
                         Ver Novedad
                     </a>
@@ -25,7 +25,7 @@
 
         {{/each}}
     {{else}}
-        <p>No hay informes aún</p>
+        <p>No hay novedades aún</p>
 
     {{/if}}
 </main>

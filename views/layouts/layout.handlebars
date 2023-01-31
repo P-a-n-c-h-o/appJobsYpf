@@ -43,21 +43,21 @@
                            
                             <div class="nav-item">
                                 {{#if novedades}} <!-- si existe un informe-->
-                                    {{#if tareas}} 
+                                    {{#each tareas}}
                                         <a class="nov" href="/novedades" id="Novedades">
-                                          {{novedades.length}}Novedades
+                                          {{novedad.length}}Novedades
                                         </a>
-                                    {{/if}} 
+                                   {{/each}} 
                                 {{/if}}
                             </div> 
 
                             <div class="nav-item">
                                 {{#if informes}} <!-- si existe un informe-->
-                                    {{#if tareas}} 
-                                        <a class="nov" href="/informe" id="Novedades">
+                                    {{#each tareas}} 
+                                        <a class="nov" href="/informes" id="Novedades">
                                           {{informes.length}}informes
                                         </a>
-                                    {{/if}} 
+                                    {{/each}} 
                                 {{/if}}
                             </div> 
 

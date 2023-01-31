@@ -81,7 +81,7 @@ module.exports = () => {
         tareasController.mostrarPanelNovedades
         
     );
-    router.post('/tareas/:url',
+    router.post('/tareas/novedades/:url',
         
     tareasController.subirNov,
     tareasController.contactarNov,
@@ -96,14 +96,14 @@ module.exports = () => {
 
     //informes
     
-    router.get('/informe', 
+    router.get('/informes', 
         authController.verificarUsuario, 
         tareasController.mostrarPanelInformes
         
     );
     
     //Recibir Mensajes de informes
-    router.post('/tareas/informe/:url',
+    router.post('/tareas/informes/:url',
         
         tareasController.subirCV,
         tareasController.contactarInfo,
@@ -112,7 +112,7 @@ module.exports = () => {
 
     );
 
-    router.get('/informes/:id', 
+    router.get('/informe/:id', 
     authController.verificarUsuario,
     tareasController.mostrarInformes
 )
