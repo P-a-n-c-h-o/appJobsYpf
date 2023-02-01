@@ -309,6 +309,7 @@ margin-top: 10px;
     }
     .nav-menu.active{
         left: 0px;
+        gap: 20px;
         justify-content:center;
     }
     .img-nav{
