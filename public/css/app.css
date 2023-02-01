@@ -293,7 +293,7 @@ margin-top: 10px;
     .nav-menu{
         position:fixed;
         left: 900%;
-        top: 216px;
+        top: 210px;
         flex-direction:inherit;
         background-attachment:inherit;
         width: 100%;
