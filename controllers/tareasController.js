@@ -426,6 +426,7 @@ exports.mostrarPanelNovedades = async (req, res) => {
 
     //consultar el usaurio atenticado
     const tareas = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
+    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
 
     const informes = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
 
@@ -436,7 +437,8 @@ exports.mostrarPanelNovedades = async (req, res) => {
             nombre: req.user.nombre,
             imagen: req.user.imagen,
             tareas,
-            informes
+            informes,
+            novedades
         })
 
 }
