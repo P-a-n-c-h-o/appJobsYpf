@@ -103,7 +103,7 @@ h3 {
 .tagline {
     font-size: 2.2rem;
     color: #ffffff;
-    margin: 2rem 0 3rem 0;
+    margin: 3rem 0 2rem 0;
 }
 
 
@@ -293,7 +293,7 @@ margin-top: 10px;
     .nav-menu{
         position:fixed;
         left: 900%;
-        top: 188px;
+        top: 205px;
         flex-direction:inherit;
         background-attachment:inherit;
         width: 100%;
