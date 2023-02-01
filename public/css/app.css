@@ -183,8 +183,6 @@ margin-top: 10px;
 }
 
 .img-nav {
-    margin-left: 40px;
-    margin-right: 30px;
     width: 80px;
     border-radius: 100%;
 }
@@ -294,14 +292,12 @@ margin-top: 10px;
 
     .nav-menu{
         position:fixed;
-        left: 400%;
+        left: 900%;
         top: 188px;
-        gap:initial;
         flex-direction:inherit;
         background-attachment:inherit;
         width: 100%;
-        text-align:center;
-        transition: 0.3s;
+        transition: 0.2s;
         background-color: hwb(186 0% 29%);
 
     }
@@ -313,13 +309,11 @@ margin-top: 10px;
     }
     .nav-menu.active{
         left: 0px;
-        padding: 0px 100px 0px;
-        justify-content: space-around;
+        justify-content:center;
     }
     .img-nav{
         margin-top: 10px;
         width: 50px;
-        align-self: flex-start;
         border-radius: 90%;
         align-items: center;
     }
