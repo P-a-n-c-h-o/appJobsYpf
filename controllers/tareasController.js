@@ -484,11 +484,9 @@ exports.mostrarInformes = async (req, res, next) => {
 }
 
 exports.mostrarNovedad = async (req, res, next) => {
-    const tarea = await Tarea.findById(req.params.id).lean();
     const informes = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
 
-    const novedades = await Tarea.find({autor: req.user._id, __v: { $gt: 0 } }).lean(); 
-
+    const tarea = await Tarea.findById(req.params.id).lean();
     //validacion de autor
     if(tarea.autor != req.user._id.toString()){
         return next();
@@ -502,8 +500,7 @@ exports.mostrarNovedad = async (req, res, next) => {
         nombre: req.user.nombre,
         imagen: req.user.imagen,
         novedad: tarea.novedad,
-        informes,
-        novedades
+        informes
     })
 }
 
