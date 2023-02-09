@@ -106,7 +106,7 @@ exports.crearUsuario = async (req, res, next) => {
 // formulario para iniciar sesion
 exports.formIniciarSesion =(req, res) =>{
     res.render('iniciar-sesion', {
-        nombrePagina: 'Iinicair Sesión en appJobsYpf'
+        nombrePagina: 'Iniciar Sesión en appJobsYpf'
     })
 }
 
