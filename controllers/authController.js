@@ -114,9 +114,9 @@ exports.enviarToken = async (req, res) => {
     });
 
     //todo correcto
-    req.flash('correcto', 'Revisa tu email para las indicaciones');
+        req.flash('correcto', 'Revisa tu email para las indicaciones');
 
-    res.redirect('/iniciar-sesion');
+        return res.redirect('/iniciar-sesion');
 }
 
 // Valida si el token es valido y el usuario existe, muestra la vista
