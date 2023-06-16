@@ -1,27 +1,27 @@
 <main class="lista-informes">
-    <h2>Lista de Informes</h2
+    <h2>Lista de Informes</h2>
     {{#if informes.length}} <!-- si existe un informe-->
-        {{#each informes}}
-            <div class="novedades">
-                <div class="cajass">
-                    <p class="etiqueta">Nombre:</p>
-                    <p class="nombre">{{nombre}}</p>
-                </div>
-                <div class="cajass">
-                    <p class="etiqueta">E-mail</p>
-                    <p class="nombre">{{email}}</p>
-                </div>
-                <div class="cajass1">
-                    <a href="{{cv}}" class="verdess">
-                    
-                        Ver Informe
-                    </a>
-                </div>
-            </div>
+    {{#each informes}}
+    <div class="novedades">
+        <div class="cajass">
+            <p class="etiqueta">Nombre:</p>
+            <p class="nombre">{{nombre}}</p>
+        </div>
+        <div class="cajass">
+            <p class="etiqueta">E-mail</p>
+            <p class="nombre">{{email}}</p>
+        </div>
+        <div class="cajass1">
+            <a href="{{cv}}" class="verdess">
 
-        {{/each}}
+                Ver Informe
+            </a>
+        </div>
+    </div>
+
+    {{/each}}
     {{else}}
-        <p>No hay novedades aún</p>
+    <p>No hay novedades aún</p>
 
     {{/if}}
 </main>
