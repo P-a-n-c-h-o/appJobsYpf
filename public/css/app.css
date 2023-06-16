@@ -42,7 +42,6 @@ h3 {
 .separador {
     padding-bottom: 2rem;
     padding-top:2rem;
-    border-bottom: 2px solid #272727;
 }
 
 /** Botones **/
@@ -172,6 +171,7 @@ h3 {
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+    background-color: #100E17;
 }
 
 .nav-tit{
